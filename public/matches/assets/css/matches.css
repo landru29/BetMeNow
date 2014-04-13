@@ -1,0 +1,181 @@
+body {
+	font-family: 'Open Sans';
+	font-size: 13px;
+	line-height: 1.54;
+	color: #666666;
+}
+.match-list .match-list-date {
+	margin-bottom: 40px;
+	margin-top: 20px;
+}
+.match-list .match-list-date h3 .h3-wrap {
+	width: 988px;
+	height: 50px;
+	display: table-cell;
+	border-bottom: solid 1px #474747;
+}
+.match-list .match-list-date h3 {
+	color: #474747;
+	font-size: 21px;
+	line-height: 50px;
+}
+.flag {
+	border: 1px solid #c7c6c6;
+}
+.col-xs-12 {
+	position: relative;
+	min-height: 1px;
+	padding-left: 10px;
+	padding-right: 10px;
+	float: inherit;
+}
+.clear-grid {
+	clear: both;
+}
+.mu {
+	position: relative;
+	border-bottom: 1px solid #DCDCDC;
+	font-size: 12px;
+	line-height: 19px;
+}
+.mu:before, .mu:after {
+	content: " ";
+	display: table;
+}
+.mu:after {
+	clear: both;
+}
+.mu:before {
+	content: " ";
+	display: table;
+	color: #666666;
+}
+.mu .mu-m:before, .mu .mu-m:after {
+	content: " ";
+	display: table;
+}
+.mu.pointer {
+	cursor: pointer;
+}
+.col-xs-12 .mu .mu-i {
+	width: 232px;
+	margin-right: 20px;
+	min-height: 80px;
+}
+.col-xs-12 .mu .mu-m {
+	margin-left: 272px;
+}
+.col-xs-12 .mu .mu-i .mu-i-datetime {
+	margin-top: 5px;
+}
+.col-xs-12 .mu .mu-i div {
+	line-height: 17px;
+}
+.col-xs-12 .mu .mu-m .mu-reasonwin {
+	font-size: 11px;
+	line-height: 18px;
+}
+.mu .mu-i {
+	text-align: left;
+	float: left;
+}
+.mu .mu-m {
+	position: relative;
+}
+.mu .mu-m .t {
+	width: 44%;
+}
+.mu .mu-m > .mu-reasonwin {
+	text-align: center;
+}
+.mu .mu-i .mu-i-group, .mu .mu-i .mu-i-datetime {
+	text-transform: uppercase;
+}
+.mu .mu-i .mu-i-group {
+	font-weight: 700;
+	text-transform: uppercase;
+}
+.col-xs-12 .t {
+	height: 80px;
+}
+.t {
+	position: absolute;
+	z-index: 1;
+}
+.t.home {
+	left: 0;
+}
+.t.away {
+	right: 0;
+}
+.t.home .t-i {
+	left: 0;
+}
+.t.home .t-n {
+	left: 0;
+	text-align: left;
+}
+.t.away .t-i {
+	right: 0;
+}
+.t.away .t-n {
+	right: 0;
+	text-align: right;
+}
+.t .t-i {
+	text-align: center;
+}
+.t .t-n, .t .t-i {
+	position: absolute;
+}
+.col-xs-12 .t-i .t-i-wrap {
+	height: 80px;
+}
+.t .t-n .t-nText, 
+.t .t-i .t-nText, 
+.t .t-n .t-i-wrap, 
+.t .t-i .t-i-wrap, 
+.t .t-n .t-nTri, 
+.t .t-i .t-nTri {
+	display: table-cell;
+	vertical-align: middle;
+}
+.col-xs-12 .t-n .t-nText {
+	font-size: 27px;
+	line-height: 27px;
+	height: 80px;
+}
+.t .t-n .t-nText, .t .t-i .t-nText {
+	color: #474747;
+	text-transform: uppercase;
+}
+.col-xs-12 .t .t-i + .t-n, 
+.col-xs-12 .t.home .t-i + .t-n {
+	margin-left: 63px;
+}
+.col-xs-12 .t.away .t-i + .t-n {
+	margin-right: 63px;
+	margin-left: 0;
+}
+.col-xs-12 .t-i .t-i-wrap .flag {
+	width: 48px;
+}
+.col-xs-12 .s {
+	margin-bottom: 8px;
+}
+.s {
+	margin: 0 auto;
+	position: relative;
+	text-align: center;
+}
+.col-xs-12 .s .s-status {
+	font-size: 11px;
+	line-height: 26px;
+	text-transform: uppercase;
+	min-height: 26px;
+}
+.col-xs-12 .s .s-score.s-date-HHmm {
+	font-size: 27px;
+	line-height: 26px;
+}
+

@@ -1,0 +1,50 @@
+<section>
+	<div class="col-xs-12 clear-grid ">
+		<div id="300186456" class="mu fixture">
+			<div class="mu-i">
+				<div class="mu-i-datetime">{{match.date|date:'dd MMM yyyy - HH:mm'}}</div>
+				<div class="mu-i-group" ng-switch on="match.level">
+					<span ng-switch-when="16">Group {{match.teamHome.group}}</span>
+					<span ng-switch-when="8">Round of 16</span>
+					<span ng-switch-when="4">Quarter-Finals</span>
+					<span ng-switch-when="2">Semi-Finals</span>
+					<span ng-switch-when="1">Play-Off For Third Place</span>
+					<span ng-switch-when="0">Final</span>
+				</div>
+				<div class="mu-i-location">
+					<div class="mu-i-stadium">{{match.stadium}}</div>
+					<div class="mu-i-venue">{{match.city}}</div>
+				</div>
+			</div>
+			<div class="mu-m">
+				<div class="t home">
+					<div class="t-i i-4">
+						<span class="t-i-wrap">
+							<img ng-src="{{match.teamHome.team.flag}}" alt="{{match.teamHome.team.country}}" class="BRA i-4-flag flag"/>
+						</span>
+					</div>
+					<div class="t-n">
+						<span class="t-nText ">{{match.teamHome.team.country}}</span>
+					</div>
+				</div>
+				<div class="t away">
+					<div class="t-i i-4">
+						<span class="t-i-wrap"><img ng-src="{{match.teamAway.team.flag}}" alt="{{match.teamAway.team.country}}" class="CRO i-4-flag flag"></span>
+					</div>
+					<div class="t-n">
+						<span class="t-nText ">{{match.teamAway.team.country}}</span>
+					</div>
+				</div>
+				<div class="s">
+					<div class="s-fixture">
+						<div class="s-status"> </div>
+						<div class="s-score s-date-HHmm">
+							<span class="s-scoreText">{{match.date|date:'HH:mm'}}</span>
+						</div>
+					</div>
+				</div>
+				<div class="mu-reasonwin"> </div>
+			</div>
+		</div>
+	</div>
+</section>

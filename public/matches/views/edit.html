@@ -1,0 +1,69 @@
+<section>
+	<form class="form-horizontal col-md-6" role="form" data-ng-submit="action">
+		<div class="form-group" data-ng-class="{'has-error': errors && errors.level}">
+			<label class="col-md-3 control-label">Level</label>
+			<div class="col-md-9">
+				<select
+					data-ng-model="match.level" id="level" class="form-control"
+					data-required data-ng-options="key as value for (key, value) in levels" data-ng-change="changeLevel()"></select>
+				<span data-ng-if="errors && errors.level" class="help-block animated fadeIn">{{errors.level.message}}</span>
+			</div>
+		</div>
+		<div class="form-group" data-ng-class="{'has-error': errors && errors.date}">
+			<label class="col-md-3 control-label">DateTime</label>
+			<div class="col-md-9">
+				<p class="input-group">
+					<input
+						type="text" class="form-control"
+						data-datepicker-starting-day="1" data-datepicker-popup="dd-MM-yyyy"
+						ng-model="match.date" data-is-open="opened" min="minDate" max="maxDate"
+						data-ng-required="true" data-close-text="Close" />
+					<span class="input-group-btn">
+						<button class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+					</span>
+				</p>
+				<div ng-model="match.date" ng-change="changed()" style="display:inline-block;">
+					<timepicker hour-step="1" minute-step="15" show-meridian="false"></timepicker>
+				</div>
+				<span data-ng-if="errors && errors.date" class="help-block animated fadeIn">{{errors.date.message}}</span>
+			</div>
+		</div>
+		<div class="form-group" data-ng-class="{'has-error': errors && errors.teamHome}">
+			<label class="col-md-3 control-label">First team</label>
+			<div class="col-md-9">
+				<select
+					data-ng-model="match.teamHome" id="teamHome" class="form-control"
+					data-required data-ng-options="rtm._id as rtm.label for rtm in rtms" ng-change="changeTeams()"></select>
+				<span data-ng-if="errors && errors.teamHome" class="help-block animated fadeIn">{{errors.teamHome.message}}</span>
+			</div>
+		</div>
+		<div class="form-group" data-ng-class="{'has-error': errors && errors.teamAway}">
+			<label class="col-md-3 control-label">Second team</label>
+			<div class="col-md-9">
+				<select
+					data-ng-model="match.teamAway" id="teamAway" class="form-control"
+					data-required data-ng-options="rtm._id as rtm.label for rtm in rtms" ng-change="changeTeams()"></select>
+				<span data-ng-if="errors && errors.teamAway" class="help-block animated fadeIn">{{errors.teamAway.message}}</span>
+			</div>
+		</div>
+		<div class="form-group" data-ng-class="{'has-error': errors && errors.stadium}">
+			<label class="col-md-3 control-label">Stadium</label>
+			<div class="col-md-9">
+				<input type="text" class="form-control" data-ng-model="match.stadium" id="stadium" placeholder="stadium" data-required/>
+				<span data-ng-if="errors && errors.stadium" class="help-block animated fadeIn">{{errors.stadium.message}}</span>
+			</div>
+		</div>
+		<div class="form-group" data-ng-class="{'has-error': errors && errors.city}">
+			<label class="col-md-3 control-label">City</label>
+			<div class="col-md-9">
+				<input type="text" class="form-control" data-ng-model="match.city" id="city" placeholder="city" data-required/>
+				<span data-ng-if="errors && errors.city" class="help-block animated fadeIn">{{errors.city.message}}</span>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-md-offset-3 col-md-9">
+				<button type="submit" ng-disabled="!submit" class="btn btn-info">Submit</button>
+			</div>
+		</div>
+	</form>
+</section>
