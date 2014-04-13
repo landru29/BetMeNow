@@ -1,0 +1,33 @@
+<section data-ng-controller="TeamsController" data-ng-init="findOne()">
+	<form class="form-horizontal col-md-6" role="form" data-ng-submit="update()">
+		<div class="form-group">
+			<label data-mean-token="'edit-title'" class="col-md-3 control-label">Title</label>
+			<div class="col-md-9">
+				<input type="text" class="form-control" data-ng-model="team.title" id="title" placeholder="Title" data-required/>
+			</div>
+		</div>
+		<div class="form-group">
+			<label data-mean-token="'edit-country'" class="col-md-3 control-label">Country</label>
+			<div class="col-md-9">
+				<input type="text" class="form-control" data-ng-model="team.country" id="country" placeholder="Country" data-required/>
+			</div>
+		</div>
+		<div class="form-group">
+			<label data-mean-token="'edit-group'" class="col-md-3 control-label">Group</label>
+			<div class="col-md-9">
+				<input type="text" class="form-control" data-ng-model="team.group" id="group" placeholder="Group" data-required/>
+			</div>
+		</div>
+		<div class="form-group">
+			<label data-mean-token="'edit-flag'" for="flag" class="col-md-3 control-label">Flag</label>
+			<div class="col-md-9">
+				<input type="text" class="form-control" data-ng-model="team.flag" id="flag" placeholder="flag" data-required/>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-md-offset-2 col-md-10">
+				<button data-mean-token="'edit-submit'" type="submit" class="btn btn-default">Submit</button>
+			</div>
+		</div>
+	</form>
+</section>

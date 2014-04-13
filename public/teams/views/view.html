@@ -1,0 +1,13 @@
+<section data-ng-controller="TeamsController" data-ng-init="findOne()">
+	<h2>{{team.country}} <img data-ng-src="{{team.flag}}" alt="flag" title="flag of {{team.country}}"/></h2>
+    <div data-ng-if="['manager', 'admin'].indexOf(global.user.role) !== -1">
+        <a class="btn" href="/#!/teams/{{team._id}}/edit">
+        	<i class="glyphicon glyphicon-edit"></i>
+        </a>
+        <a class="btn" data-ng-click="remove();">
+            <i class="glyphicon glyphicon-trash"></i>
+        </a>
+    </div>
+    <div>Group: {{team.group}}</div>
+    <div>Pts: {{team.points}}</div>
+</section>

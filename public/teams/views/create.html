@@ -1,0 +1,30 @@
+<section data-ng-controller="TeamsController">
+	<form class="form-horizontal col-md-6" role="form" data-ng-submit="create()">
+		<div class="form-group" data-ng-class="{'has-error': errors && errors.title}">
+			<label data-mean-token="'create-title'" class="col-md-3 control-label">Title</label>
+			<div class="col-md-9">
+				<input type="text" class="form-control" data-ng-model="title" id="title" placeholder="Title" data-required/>
+				<span data-ng-if="errors && errors.title" class="help-block animated fadeIn">{{errors.title.message}}</span>
+			</div>
+		</div>
+		<div class="form-group" data-ng-class="{'has-error': errors && errors.country}">
+			<label data-mean-token="'create-country'" class="col-md-3 control-label">Country</label>
+			<div class="col-md-9">
+				<input type="text" class="form-control" data-ng-model="country" id="country" placeholder="Country" data-required/>
+				<span data-ng-if="errors && errors.country" class="help-block animated fadeIn">{{errors.country.message}}</span>
+			</div>
+		</div>
+		<div class="form-group" data-ng-class="{'has-error': errors && errors.flag}">
+			<label data-mean-token="'create-flag'" for="flag" class="col-md-3 control-label">Flag</label>
+			<div class="col-md-9">
+				<input type="url" class="form-control" data-ng-model="flag" id="flag" placeholder="flag" data-required/>
+				<span data-ng-if="errors && errors.flag" class="help-block animated fadeIn">{{errors.flag.message}}</span>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-md-offset-3 col-md-9">
+				<button type="submit" class="btn btn-info">Submit</button>
+			</div>
+		</div>
+	</form>
+</section>

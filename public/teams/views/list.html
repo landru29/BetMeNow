@@ -1,0 +1,29 @@
+<section data-ng-controller="TeamsController" data-ng-init="find()">
+	<div data-ng-repeat="group in teams">
+		<div class="row">
+			<div class="col-md-11"><span class="caption">Group {{group._id}}</span></div>
+		</div>
+		<div class="row head">
+			<div class="col-md-4 title">Teams</div>
+			<div class="col-md-1"><abbr title="Played">MP</abbr></div>
+			<div class="col-md-1"><abbr title="Won">W</abbr></div>
+			<div class="col-md-1"><abbr title="Draw">D</abbr></div>
+			<div class="col-md-1"><abbr title="Lost">L</abbr></div>
+			<div class="col-md-1"><abbr title="Goals for">GF</abbr></div>
+			<div class="col-md-1"><abbr title="Goals against">GA</abbr></div>
+			<div class="col-md-1"><abbr title="Points">Pts</abbr></div>
+			<div class="col-md-1">&nbsp;</div>
+		</div>
+		<div data-ng-repeat="team in group.teams" class="row team">
+			<div class="col-md-4 countryText"><img data-ng-src="{{team.flag}}" alt="flag" class="flag"/>{{team.country}}</div>
+			<div class="col-md-1">0</div>
+			<div class="col-md-1">0</div>
+			<div class="col-md-1">0</div>
+			<div class="col-md-1">0</div>
+			<div class="col-md-1">0</div>
+			<div class="col-md-1">0</div>
+			<div class="col-md-1">{{team.points}}</div>
+			<div class="col-md-1"><a href="#"><span class="glyphicon glyphicon-chevron-down actions"></span></a></div>
+		</div>
+	</div>
+</section>
