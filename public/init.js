@@ -10,7 +10,7 @@ angular.element(document).ready(function() {
 });
 
 // Default modules
-var modules = ['ngCookies', 'ngResource', 'ui.bootstrap', 'ui.router', 'wcb.system', 'wcb.articles', 'wcb.auth'];
+var modules = ['ngCookies', 'ngResource', 'ui.bootstrap', 'ui.router', 'wcb.system', 'wcb.teams', 'wcb.matches', 'wcb.auth'];
 
 // Combined modules
 angular.module('wcb', modules);
