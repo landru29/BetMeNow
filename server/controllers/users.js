@@ -76,7 +76,7 @@ exports.create = function(req, res, next) {
             if (err) return next(err);
             return res.redirect('/');
         });
-        res.status(200);
+        res.status(201);
     });
 };
 /**
@@ -90,10 +90,7 @@ exports.me = function(req, res) {
  * Find user by id
  */
 exports.user = function(req, res, next, id) {
-    User
-        .findOne({
-            _id: id
-        })
+    User.findOne({_id: id})
         .exec(function(err, user) {
             if (err) return next(err);
             if (!user) return next(new Error('Failed to load User ' + id));
