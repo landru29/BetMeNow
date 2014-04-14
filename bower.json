@@ -2,13 +2,13 @@
     "name": "wcb",
     "version": "0.0.1",
     "dependencies": {
-        "angular": "latest",
-        "angular-resource": "latest",
-        "angular-cookies": "latest",
-        "angular-mocks": "latest",
-        "angular-route": "latest",
+        "angular": "1.2.16",
+        "angular-resource": "1.2.16",
+        "angular-cookies": "1.2.16",
+        "angular-mocks": "1.2.16",
+        "angular-route": "1.2.16",
+        "angular-i18n": "1.2.16",
         "bootstrap": "3.0.3",
-        "angular-bootstrap": "0.10.0",
-        "angular-ui-router": "#master"
+        "angular-bootstrap": "0.10.0"
     }
 }
