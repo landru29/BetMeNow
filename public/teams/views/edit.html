@@ -1,27 +1,31 @@
-<section data-ng-controller="TeamsController" data-ng-init="findOne()">
-	<form class="form-horizontal col-md-6" role="form" data-ng-submit="update()">
+<section>
+	<form class="form-horizontal col-md-6" role="form" data-ng-submit="action">
 		<div class="form-group">
 			<label data-mean-token="'edit-title'" class="col-md-3 control-label">Title</label>
 			<div class="col-md-9">
 				<input type="text" class="form-control" data-ng-model="team.title" id="title" placeholder="Title" data-required/>
+				<span data-ng-if="errors && errors.title" class="help-block animated fadeIn">{{errors.title.message}}</span>
 			</div>
 		</div>
 		<div class="form-group">
 			<label data-mean-token="'edit-country'" class="col-md-3 control-label">Country</label>
 			<div class="col-md-9">
 				<input type="text" class="form-control" data-ng-model="team.country" id="country" placeholder="Country" data-required/>
+				<span data-ng-if="errors && errors.country" class="help-block animated fadeIn">{{errors.country.message}}</span>
 			</div>
 		</div>
 		<div class="form-group">
 			<label data-mean-token="'edit-group'" class="col-md-3 control-label">Group</label>
 			<div class="col-md-9">
 				<input type="text" class="form-control" data-ng-model="team.group" id="group" placeholder="Group" data-required/>
+				<span data-ng-if="errors && errors.group" class="help-block animated fadeIn">{{errors.group.message}}</span>
 			</div>
 		</div>
 		<div class="form-group">
 			<label data-mean-token="'edit-flag'" for="flag" class="col-md-3 control-label">Flag</label>
 			<div class="col-md-9">
 				<input type="text" class="form-control" data-ng-model="team.flag" id="flag" placeholder="flag" data-required/>
+				<span data-ng-if="errors && errors.flag" class="help-block animated fadeIn">{{errors.flag.message}}</span>
 			</div>
 		</div>
 		<div class="form-group">

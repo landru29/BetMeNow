@@ -52,3 +52,206 @@ h1 {
 .flag {
 	border: 1px solid #c7c6c6;
 }
+
+.mh {
+  position: relative;
+  margin-top: 16px;
+}
+.mh:before,
+.mh:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */
+}
+.mh:after {
+  clear: both;
+}
+.mh:before,
+.mh:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */
+}
+.mh:after {
+  clear: both;
+}
+.mh > a {
+  display: block;
+  color: #666666;
+}
+.mh .mh-i-report-hl {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+.mh .mh-i .mh-i-round,
+.mh .mh-i .mh-i-location-date {
+  text-align: center;
+}
+.mh .mh-i .mh-i-round .mh-i-datetime,
+.mh .mh-i .mh-i-location-date .mh-i-datetime {
+  display: inline-block;
+}
+.mh .mh-i .mh-i-location-date span {
+  margin-right: 5px;
+}
+.mh .mh-i .mh-i-location-date .mh-i-date {
+  display: inline;
+  margin-right: 10px;
+}
+.mh .mh-i .mh-i-round {
+  font-weight: 700;
+  color: #474747;
+}
+.mh .mh-m {
+  position: relative;
+}
+.mh .mh-m:before,
+.mh .mh-m:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */
+}
+.mh .mh-m:after {
+  clear: both;
+}
+.mh .mh-m:before,
+.mh .mh-m:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */
+}
+.mh .mh-m:after {
+  clear: both;
+}
+.mh .mh-m .t {
+  width: 44%;
+  height: 50px;
+  margin-top: 15px;
+}
+.mh .mh-m .t .t-i .t-i-wrap,
+.mh .mh-m .t .t-n .t-nText {
+  height: 50px;
+}
+.mh .mh-m .t .t-n .t-nText {
+  font-size: 30px;
+}
+.mh .mh-m .t .t-n .t-nText.kern {
+  font-size: 24px;
+}
+.mh .mh-m .s .s-scoreText {
+  font-size: 32px;
+  font-weight: 700;
+}
+.mh .mh-m .t-scorer {
+  width: 33%;
+}
+.mh .mh-m .t-scorer:before,
+.mh .mh-m .t-scorer:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */
+}
+.mh .mh-m .t-scorer:after {
+  clear: both;
+}
+.mh .mh-m .t-scorer:before,
+.mh .mh-m .t-scorer:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */
+}
+.mh .mh-m .t-scorer:after {
+  clear: both;
+}
+.mh .mh-m .t-scorer .ml-scorer-name {
+  float: left;
+}
+.mh .mh-m .t-scorer .ml-scorer-name .p .p-i .flag {
+  display: none !important;
+  visibility: hidden !important;
+}
+.mh .mh-m .t-scorer .ml-scorer-name .p .p-n a {
+  color: #474747;
+}
+.mh .mh-m .t-scorer .ml-scorer-name .p a {
+  color: #474747;
+  text-decoration: none;
+}
+.mh .mh-m .t-scorer .ml-scorer-name .p a:hover,
+.mh .mh-m .t-scorer .ml-scorer-name .p a::after,
+.mh .mh-m .t-scorer .ml-scorer-name .p a:visited::after {
+  color: #0087e6;
+}
+.mh .mh-m .t-scorer .ml-scorer-name .p a:visited,
+.mh .mh-m .t-scorer .ml-scorer-name .p a:visited * {
+  color: #5cace5;
+}
+.mh .mh-m .t-scorer .ml-scorer-name .p a:visited:hover,
+.mh .mh-m .t-scorer .ml-scorer-name .p a:visited:hover * {
+  color: #0087e6;
+}
+.mh .mh-m .t-scorer.home {
+  float: left;
+  padding-left: 63px;
+}
+.mh .mh-m .t-scorer.home .mh-l-scorers .mh-scorer {
+  float: left;
+}
+.mh .mh-m .t-scorer.home .mh-l-scorers .mh-scorer .ml-scorer-evmin {
+  font-weight: 700;
+  margin-left: 6px;
+  margin-right: 10px;
+}
+.mh .mh-m .t-scorer.away {
+  float: right;
+  padding-left: 63px;
+}
+.mh .mh-m .t-scorer.away .mh-l-scorers .mh-scorer {
+  float: right;
+  text-align: right;
+}
+.mh .mh-m .t-scorer.away .mh-l-scorers .mh-scorer .ml-scorer-name {
+  margin-left: 10px;
+}
+.mh .mh-m .t-scorer.away .mh-l-scorers .mh-scorer .ml-scorer-evmin {
+  font-weight: 700;
+  margin-left: 6px;
+}
+.mh .mh-m > .mu-reasonwin {
+  margin: 0 auto;
+  text-align: center;
+  font-size: 11px;
+  line-height: 18px;
+  width: 33%;
+}
+.mh .mh-m > .mu-reasonwin:before,
+.mh .mh-m > .mu-reasonwin:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */
+}
+.mh .mh-m > .mu-reasonwin:after {
+  clear: both;
+}
+.mh .mh-m > .mu-reasonwin:before,
+.mh .mh-m > .mu-reasonwin:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */
+}
+.mh .mh-m > .mu-reasonwin:after {
+  clear: both;
+}
+.mh .mh-m > .mu-reasonwin-abbr {
+  display: none !important;
+  visibility: hidden !important;
+}

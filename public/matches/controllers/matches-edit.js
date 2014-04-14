@@ -3,13 +3,13 @@
 angular.module('wcb.matches')
 	.controller('MatchesEditCtrl', [
 		'$scope',
-		'$stateParams',
 		'$location',
 		'Global',
 		'Matches',
+    'match',
 		'rtms',
-		'match',
-		function ($scope, $stateParams, $location, Global, Matches, rtms, match) {
+		function ($scope, $location, Global, Matches, match, rtms) {
+      console.log('MatchesEditCtrl');
 			$scope.global = Global;
 			$scope.levels = {
 				'16': 'GROUPS',
@@ -20,14 +20,14 @@ angular.module('wcb.matches')
 				'00': 'FINAL'
 			};
 			$scope.match = match;
-			$scope.action = $scope.update;
+			//$scope.action = $scope.update;
 			$scope.rtms = rtms;
 			$scope.minDate = new Date(2014, 5, 12, 18, 0);
 			$scope.maxDate = new Date(2014, 6, 13, 21, 0);
 			$scope.submit = true;
 			// Si il s'agit d'un nouvel enregistrement
 			if (!angular.isDefined(match._id)) {
-				$scope.action = $scope.create;
+				//$scope.action = $scope.create;
 				// On initialise la date du match
 				$scope.match.date = new Date(Date.now());
 				if ($scope.match.date.getTime() < $scope.minDate.getTime()) {
@@ -99,16 +99,6 @@ angular.module('wcb.matches')
 				});
 			};
 
-			$scope.findOne = function() {
-				Matches.get({
-					matchId: $stateParams.matchId
-				}, function(match) {
-					$scope.match = match;
-					$scope.teamHome = match.teamA;
-					$scope.teamAway = match.teamB;
-				});
-			};
-
 			$scope.changeTeams = function() {
 				if (!angular.isDefined($scope.teamHome) || !angular.isDefined($scope.teamAway)) {
 					return;
@@ -169,30 +159,5 @@ angular.module('wcb.matches')
                     $scope.rtms = getRtmsForLevel(new RegExp('^W6[12]$'));
 				}
 			};
-		}
-	]);
-
-angular.module('wcb.matches')
-	.controller('MatchesListCtrl', [
-		'$scope',
-		'$stateParams',
-		'$location',
-		'Global',
-		'Matches',
-		'matches',
-		function ($scope, $stateParams, $location, Global, Matches, matches) {
-			$scope.global = Global;
-			$scope.matches = matches;
-
-			$scope.find = function() {
-				Matches.query({group: true}, function(matches) {
-					$scope.matches = matches;
-				});
-			};
-
-			$scope.viewMatch = function(match) {
-				$location.path('/matches/' + match._id);
-			};
-
 		}
 	]);

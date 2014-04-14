@@ -167,6 +167,7 @@ body {
 	margin: 0 auto;
 	position: relative;
 	text-align: center;
+	height: 70px;
 }
 .col-xs-12 .s .s-status {
 	font-size: 11px;
@@ -178,4 +179,14 @@ body {
 	font-size: 27px;
 	line-height: 26px;
 }
-
+.mu > a {
+	display: block;
+	color: #666666;
+	text-decoration: none;
+}
+.mu > a .s-score {
+	color: #0087e6;
+}
+.mu > a:hover *, .mu > a:hover .s-status, .mu > a:hover .s-status-abbr, .mu > a:hover .s-score, .mu > a:hover .mu-reasonwin {
+	text-decoration: none;
+}
