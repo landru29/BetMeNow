@@ -11,44 +11,51 @@ var mongoose = require('mongoose'),
  * Match Schema
  */
 var MatchSchema = new Schema({
-    created: {
-        type: Date,
-        default: Date.now
-    },
-    level: {
-        type: Number,
-        default: 32,
-        trim: true
-    },
+  created: {
+    type: Date,
+    default: Date.now
+  },
+  level: {
+    type: Number,
+    default: 32,
+    trim: true
+  },
 	date: {
-        type: Date
+    type: Date
 	},
 	stadium: {
-        type: String,
+    type: String,
 		default: '',
 		trim: true
 	},
 	city: {
-        type: String,
+    type: String,
 		default: '',
 		trim: true
 	},
-    teamHome: {
-        type: String,
-        ref: 'RTM',
-		null: true,
-		index: true
-    },
-    teamAway: {
-        type: String,
-        ref: 'RTM',
-		null: true,
-		index: true
-    },
+  teamHome: {
+    type: String,
+    ref: 'RTM',
+    null: true,
+    index: true
+  },
+  teamAway: {
+    type: String,
+    ref: 'RTM',
+  	null: true,
+  	index: true
+  },
 	score: {
-		type: String,
-		default: ''
+    away: { type: Number, null: true },
+    home: { type: Number, null: true }
 	}
+});
+
+/**
+ * Virtuals
+ */
+MatchSchema.virtual('score.draw').get(function() {
+  return this.score.away === this.score.home;
 });
 
 /**
@@ -67,11 +74,16 @@ MatchSchema.path('date').validate(function(date) {
 	var now = new Date();
     return date > now;
 }, 'Date must be in the future');
-MatchSchema.path('score').validate(function(score) {
-	if (score.length > 0)
-		return /^([0-9]+-[0-9]+|null)$/.test(score);
-	return true;
-}, 'Score must have the format X-X or null');
+MatchSchema.path('score.away').validate(function(score) {
+  if (score !== null)
+    return score >= 0;
+  return true;
+}, 'Score Away must be greater at zero');
+MatchSchema.path('score.home').validate(function(score) {
+  if (score !== null)
+    return score >= 0;
+  return true;
+}, 'Score Home must be greater at zero');
 
 /**
  * Statics
