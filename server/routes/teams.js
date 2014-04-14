@@ -14,11 +14,11 @@ var hasAuthorization = function(req, res, next) {
 
 module.exports = function(app) {
 
-    app.get('/teams', teams.all);
-    app.post('/teams', authorization.requiresLogin, hasAuthorization, teams.create);
-    app.get('/teams/:teamId', teams.show);
-    app.put('/teams/:teamId', authorization.requiresLogin, hasAuthorization, teams.update);
-    app.del('/teams/:teamId', authorization.requiresLogin, hasAuthorization, teams.destroy);
+    app.get('/api/teams', teams.all);
+    app.post('/api/teams', authorization.requiresLogin, hasAuthorization, teams.create);
+    app.get('/api/teams/:teamId', teams.show);
+    app.put('/api/teams/:teamId', authorization.requiresLogin, hasAuthorization, teams.update);
+    app.del('/api/teams/:teamId', authorization.requiresLogin, hasAuthorization, teams.destroy);
 
     // Finish with setting up the teamId param
     app.param('teamId', teams.team);
