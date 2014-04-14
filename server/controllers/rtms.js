@@ -6,7 +6,6 @@
 var mongoose = require('mongoose'),
     RTM = mongoose.model('RTM'),
 	Team = mongoose.model('Team'),
-	RTM = mongoose.model('RTM'),
     _ = require('lodash');
 
 
