@@ -1,24 +1,29 @@
 {
 	"css": {
 		"public/build/css/dist.min.css": [
-			"public/system/lib/bootstrap/dist/css/bootstrap.css",
+			"public/vendor/bootstrap/dist/css/bootstrap.css",
 			"public/**/assets/css/*.css"
 		]
 	},
 	"js": {
 		"public/build/js/dist.min.js": [
-			"public/system/lib/angular/angular.js",
-			"public/system/lib/angular-routes/angular-routes.js",
-			"public/system/lib/angular-cookies/angular-cookies.js",
-			"public/system/lib/angular-resource/angular-resource.js",
-			"public/system/lib/angular-ui-router/release/angular-ui-router.js",
-			"public/system/lib/angular-bootstrap/ui-bootstrap.js",
-			"public/system/lib/angular-bootstrap/ui-bootstrap-tpls.js",
+			"public/vendor/jquery/dist/jquery.min.js",
+			"public/vendor/angular/angular.js",
+			"public/vendor/angular-route/angular-route.js",
+			"public/vendor/angular-i18n/angular-locale_fr-fr.js",
+			"public/vendor/angular-cookies/angular-cookies.js",
+			"public/vendor/angular-resource/angular-resource.js",
+			"public/vendor/angular-bootstrap/ui-bootstrap.js",
+			"public/vendor/angular-bootstrap/ui-bootstrap-tpls.js",
 			"public/init.js",
-			"public/*/*.js",
-			"public/*/services/*.js",
-			"public/*/routes/*.js",
-			"public/*/controllers/*.js"
+			"public/auth/auth.js",
+			"public/system/system.js",
+			"public/matches/matches.js",
+			"public/teams/teams.js",
+			"public/auth/*/*.js",
+			"public/system/*/*.js",
+			"public/matches/*/*.js",
+			"public/teams/*/*.js"
 		]
 	}
 }
