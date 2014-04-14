@@ -22,7 +22,7 @@ module.exports = function(grunt) {
                 }
             },
             css: {
-                files: ['public/css/**'],
+                files: ['public/**/assets/css/*.css'],
                 tasks: ['csslint'],
                 options: {
                     livereload: true
@@ -50,7 +50,7 @@ module.exports = function(grunt) {
                 csslintrc: '.csslintrc'
             },
             all: {
-                src: ['public/css/**/*.css']
+                src: ['public/**/assets/css/*.css']
             }
         },
         cssmin: {
@@ -63,7 +63,7 @@ module.exports = function(grunt) {
                 script: 'server.js',
                 options: {
                     args: [],
-                    ignore: ['public/**'],
+                    ignore: ['public/**', 'node_modules/**'],
                     ext: 'js,html',
                     nodeArgs: ['--debug'],
                     delayTime: 1,
