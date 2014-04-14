@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('wcb.system', ['wcb.controllers.login','wcb-factory-interceptor']);
+angular.module('wcb.system', ['wcb.auth', 'wcb.system.notifications']);

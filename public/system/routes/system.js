@@ -1,23 +1,12 @@
 'use strict';
 
 //Setting up route
-angular.module('wcb.system').config(['$stateProvider', '$urlRouterProvider',
-	function($stateProvider, $urlRouterProvider) {
-		// For unmatched routes:
-		$urlRouterProvider.otherwise('/');
+angular.module('wcb.system').config(['$routeProvider',
+  function ($routeProvider) {
 
-		// states for my app
-		$stateProvider
-			.state('home', {
-				url: '/',
-				templateUrl: 'public/system/views/index.html'
-			})
-			.state('auth', {
-				templateUrl: 'public/auth/views/index.html'
-			});
-	}])
-    .config(['$locationProvider',
-        function($locationProvider) {
-            $locationProvider.hashPrefix('!');
-        }
-    ]);
+    $routeProvider.when('/', {
+      templateUrl:'/public/system/views/index.html',
+      controller:'HomeCtrl'
+    });
+  }
+]);

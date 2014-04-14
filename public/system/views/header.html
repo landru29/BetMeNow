@@ -1,32 +1,32 @@
-<div class="page-header" data-ng-controller="HeaderController">
+<div class="page-header" data-ng-controller="HeaderCtrl">
 	<div class="logo pull-left">
 		<a class="navbar-brand" href="/">World Cup Brazil 2014</a>
 	</div>
 
 	<div class="left pull-left">
 		<ul class="navbar-nav nav">
-			<li data-ng-repeat="item in menus" data-ui-route="/{{item.link}}" data-ng-class="{active: $uiRoute}">
-				<a data-ui-sref='{{item.link}}'>{{item.title}}</a>
+			<li data-ng-repeat="item in menus" data-ng-class="{active: isActive(item.link)}">
+				<a data-ng-if="item.show" data-ng-href='{{item.link}}'>{{item.title}}</a>
 			</li>
 		</ul>
 	</div>
 
 	<div class="account">
 		<div id="text-edit">
-			<div class="pull-right" data-ng-show="global.authenticated"></div>
+			<div class="pull-right" data-ng-show="isAuthenticated()"></div>
 		</div>
-		<ul class="navbar-nav nav" data-ng-hide="global.authenticated">
-			<li><a data-ui-sref='auth.register'>Register</a></li>
+		<ul class="navbar-nav nav" data-ng-hide="isAuthenticated()">
+			<li><a href="#" data-ng-click="register()">Register</a></li>
 			<li class="divider-vertical"></li>
-			<li><a data-ui-sref='auth.login'>Login</a></li>
+			<li><a href="#" data-ng-click="login()">Login</a></li>
 		</ul>
-		<ul class="navbar-nav nav" data-ng-show="global.authenticated">
+		<ul class="navbar-nav nav" data-ng-show="isAuthenticated()">
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-					{{global.user}} <b class="caret"></b>
+					{{user().name}} <b class="caret"></b>
 				</a>
 				<ul class="dropdown-menu">
-					<li><a href="/logout">Signout</a></li>
+					<li><a data-ng-click="logout()" href="#">Signout</a></li>
 				</ul>
 			</li>
 		</ul>
