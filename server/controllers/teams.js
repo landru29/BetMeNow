@@ -110,7 +110,7 @@ exports.show = function(req, res) {
               { path: 'teamHome.team', select: 'country flag points', model: 'Team'},
               { path: 'teamAway.team', select: 'country flag points', model: 'Team'}
         ];
-        var promise = Match.populate(matches, opts, function(err, matchesP) {
+        Match.populate(matches, opts, function(err, matchesP) {
           if (err) {
             console.log(err);
           }

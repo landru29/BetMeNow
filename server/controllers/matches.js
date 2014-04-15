@@ -5,8 +5,9 @@
  */
 var mongoose = require('mongoose'),
     Match = mongoose.model('Match'),
-	Team = mongoose.model('Team'),
-	RTM = mongoose.model('RTM'),
+  	Team = mongoose.model('Team'),
+  	RTM = mongoose.model('RTM'),
+    Bet = mongoose.model('Bet'),
     _ = require('lodash');
 
 
@@ -81,13 +82,12 @@ exports.destroy = function(req, res) {
  */
 exports.show = function(req, res) {
 	var opts = [
-        { path: 'teamHome.team', select: 'country flag points', model: 'Team'},
-        { path: 'teamAway.team', select: 'country flag points', model: 'Team'}
+        { path: 'teamHome.team', select: 'country flag points group', model: 'Team'},
+        { path: 'teamAway.team', select: 'country flag points group', model: 'Team'}
 	];
-	var promise = Match.populate(req.match, opts);
-	promise.then(function(data) {
+	Match.populate(req.match, opts, function(err, data) {
 		res.jsonp(data);
-	}).end();
+	});
 };
 
 /**
@@ -137,7 +137,7 @@ exports.all = function(req, res) {
 						res.json(500);
 					} else {
 						RTM.find({}, function(err, rtms) {
-                            if (err) {
+              if (err) {
 								return res.json(500);
 							}
 							var getTeam = function(rtmId) {
@@ -174,4 +174,35 @@ exports.all = function(req, res) {
 			}
 		}
 	});
+};
+
+/**
+ * Return the bets of match
+ */
+module.exports.bets = function(req, res) {
+  Bet.aggregate(
+    {$match: {match: req.match._id}},
+    {
+      $group: {
+        _id: '$winner',
+        count: {$sum: 1},
+        bets: {
+          $push: {
+            _id: '$_id',
+            winner: '$winner',
+            user: '$user',
+            score: '$score',
+            created: '$created'
+          }
+        }
+      }
+    })
+    .sort('bets.created')
+    .exec(function(err, results) {
+      if (err) {
+        console.log(err);
+        results = [];
+      }
+      res.json(200, results);
+    });
 };

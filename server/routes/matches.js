@@ -17,6 +17,7 @@ module.exports = function(app) {
     app.get('/api/matches', matches.all);
     app.post('/api/matches', authorization.requiresLogin, hasAuthorization, matches.create);
     app.get('/api/matches/:matchId', matches.show);
+    app.get('/api/matches/:matchId/bets', matches.bets);
     app.put('/api/matches/:matchId', authorization.requiresLogin, hasAuthorization, matches.update);
     app.del('/api/matches/:matchId', authorization.requiresLogin, hasAuthorization, matches.destroy);
 

@@ -18,7 +18,8 @@ var TeamSchema = new Schema({
     country: {
         type: String,
         default: '',
-        trim: true
+        trim: true,
+        index: true
     },
 	points: {
 		type: Number,

@@ -20,14 +20,14 @@ var BetSchema = new Schema({
     ref: 'RTM',
     index: true
   },
-  draw: { type: Boolean, default: false },
   score: {
     away: { type: Number, null: true },
     home: { type: Number, null: true }
   },
-  user: { type: Schema.Types.ObjectId, ref: 'User', 'null': false, require: true },
-  match: { type: Schema.Types.ObjectId, ref: 'Match', 'null': false, require: true }
+  user: { type: Schema.Types.ObjectId, ref: 'User', 'null': false, require: true, index: true },
+  match: { type: Schema.Types.ObjectId, ref: 'Match', 'null': false, require: true, index: true }
 });
+
 
 /**
  * Validations

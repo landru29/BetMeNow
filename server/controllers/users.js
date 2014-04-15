@@ -97,18 +97,24 @@ exports.user = function(req, res, next, id) {
 };
 
 exports.bets = function(req, res) {
-  Bet.find({user: _id})
+  var criteria = {user: req.user._id};
+  if (req.param('match')) {
+    criteria.match = req.param('match');
+  }
+  console.log(criteria);
+  Bet.find(criteria)
     .sort('-created')
+    .populate('winner')
     .exec(function(err, bets) {
       if (err) {
         return res.json(500, err);
       }
+      console.log(bets);
       var opts = [
         { path: 'winner.team', select: 'country flag points', model: 'Team'}
       ];
-      var promise = Bet.populate(bets, opts);
-      promise.then(function(data) {
-        res.jsonp(data);
-      }).end();
+      Bet.populate(bets, opts, function(err, data) {
+        res.json(data);
+      });
     });
 };
