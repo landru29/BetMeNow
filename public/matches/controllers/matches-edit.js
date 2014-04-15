@@ -4,37 +4,68 @@ angular.module('wcb.matches')
 	.controller('MatchesEditCtrl', [
 		'$scope',
 		'$location',
-		'Global',
+		'notifications',
 		'Matches',
     'match',
 		'rtms',
-		function ($scope, $location, Global, Matches, match, rtms) {
+		function ($scope, $location, notifications, Matches, match, rtms) {
       console.log('MatchesEditCtrl');
-			$scope.global = Global;
-			$scope.levels = {
-				'16': 'GROUPS',
-				'08': 'ROUND OF 16',
-				'04': 'QUARTER-FINALS',
-				'02': 'SEMI-FINALS',
-				'01': 'PLAY-OFF FOR THIRD PLACE',
-				'00': 'FINAL'
-			};
+			$scope.levels = [
+				{key: 16, value: 'GROUPS'},
+				{key: 8, value: 'ROUND OF 16'},
+				{key: 4, value: 'QUARTER-FINALS'},
+				{key: 2, value: 'SEMI-FINALS'},
+				{key: 1, value: 'PLAY-OFF FOR THIRD PLACE'},
+				{key: 0, value: 'FINAL'}
+			];
 			$scope.match = match;
-			//$scope.action = $scope.update;
+			$scope.action = $scope.update;
 			$scope.rtms = rtms;
 			$scope.minDate = new Date(2014, 5, 12, 18, 0);
 			$scope.maxDate = new Date(2014, 6, 13, 21, 0);
 			$scope.submit = true;
 			// Si il s'agit d'un nouvel enregistrement
 			if (!angular.isDefined(match._id)) {
-				//$scope.action = $scope.create;
+				$scope.action = $scope.create;
 				// On initialise la date du match
 				$scope.match.date = new Date(Date.now());
 				if ($scope.match.date.getTime() < $scope.minDate.getTime()) {
 					$scope.match.date = new Date($scope.minDate.getTime());
 				}
+			} else {
+				console.log(typeof match.level);
+				for (var i=0; i<$scope.length; ++i) {
+					console.log($scope.levels[i].key);
+					if ($scope.levels[i].key === match.level) {
+						$scope.match.level = $scope.levels[i];
+						break;
+					}
+				}
+				var home = false, away=false;
+				for (var r=0; r<$scope.rtms.length; ++r) {
+					if (match.teamHome._id == $scope.rtms[r]._id) {
+						$scope.match.teamHome = $scope.rtms[r]._id;
+						home = true;
+					}
+					if (match.teamAway._id == $scope.rtms[r]._id) {
+						$scope.match.teamAway = $scope.rtms[r]._id;
+						away = true;
+					}
+					if (home && away) {
+						console.log('r: ' + r);
+						break;
+					}
+				}
 			}
-			console.log(match);
+			console.log($scope.match);
+
+			$scope.save = function() {
+				if (!angular.isDefined($scope.match._id)) {
+					$scope.create();
+				} else {
+					$scope.update();
+				}
+			};
 
 			$scope.create = function() {
 				if (!$scope.submit) {
@@ -53,7 +84,8 @@ angular.module('wcb.matches')
 					teamAway: this.teamAway
 				});
 				match.$save(function(response) {
-					$location.path('/matches/' + response._id);
+					notifications.pushForNextRoute({message: 'Match saved successfully', type: 'success'});
+					$location.path('/matches/show/' + response._id);
 					//$location.path('matches/create');
 				}, function(response) {
 					console.log(response.data);
@@ -84,6 +116,7 @@ angular.module('wcb.matches')
 			};
 
 			$scope.update = function() {
+				console.log('update');
 				if (!$scope.submit) {
 					// Envoyer une notification
 					return false;
@@ -95,7 +128,8 @@ angular.module('wcb.matches')
 				match.updated.push(new Date().getTime());
 
 				match.$update(function() {
-					$location.path('matches/' + match._id);
+					notifications.pushForNextRoute({message: 'Match saved successfully', type: 'success'});
+					$location.path('matches/show/' + match._id);
 				});
 			};
 
@@ -142,21 +176,21 @@ angular.module('wcb.matches')
 				}
 				return newRtms;
 			};
-			$scope.changeLevel = function() {
+			$scope.changeLevelaa = function() {
 				var level = parseInt($scope.match.level, 10);
 				if (!angular.isDefined($scope.old_rtms)) {
 					$scope.old_rtms = $scope.rtms;
 				}
 				if (16 === level) {
-                    $scope.rtms = getRtmsForLevel(new RegExp('^[A-H][1-4]$'));
+          $scope.rtms = getRtmsForLevel(new RegExp('^[A-H][1-4]$'));
 				} else if (8 === level) {
-                    $scope.rtms = getRtmsForLevel(new RegExp('^[1-2][A-H]$'));
+          $scope.rtms = getRtmsForLevel(new RegExp('^[1-2][A-H]$'));
 				} else if (4 === level || 2 === level) {
-                    $scope.rtms = getRtmsForLevel(new RegExp('^W([4-5][0-9]|60)$'));
+          $scope.rtms = getRtmsForLevel(new RegExp('^W([4-5][0-9]|60)$'));
 				} else if (1 === level) {
-                    $scope.rtms = getRtmsForLevel(new RegExp('^L6[12]$'));
+          $scope.rtms = getRtmsForLevel(new RegExp('^L6[12]$'));
 				} else if (0 === level) {
-                    $scope.rtms = getRtmsForLevel(new RegExp('^W6[12]$'));
+          $scope.rtms = getRtmsForLevel(new RegExp('^W6[12]$'));
 				}
 			};
 		}

@@ -13,7 +13,7 @@
 
     <div class="col-xs-12 clear-grid" ng-repeat="match in team.matches" style="margin-top:40px;border-top:1px solid;">
 
-        <div class="mh " data-ng-class="{fixture:!match.score.home, result:match.score.home}">
+        <div class="mh pointer" data-ng-class="{fixture:!match.score.home, result:match.score.home}" data-ng-click="showMatch(match)">
             <div class="mh-i">
                 <div class="mh-i-location-date">
                     <span class="mh-i-stadium">{{match.stadium}}</span>

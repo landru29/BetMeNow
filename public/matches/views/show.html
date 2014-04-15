@@ -1,49 +1,70 @@
 <section>
-	<div class="col-xs-12 clear-grid ">
-		<div id="300186456" class="mu fixture">
-			<div class="mu-i">
-				<div class="mu-i-datetime">{{match.date|date:'dd MMM yyyy - HH:mm'}}</div>
-				<div class="mu-i-group" ng-switch on="match.level">
-					<span ng-switch-when="16">Group {{match.teamHome.group}}</span>
-					<span ng-switch-when="8">Round of 16</span>
-					<span ng-switch-when="4">Quarter-Finals</span>
-					<span ng-switch-when="2">Semi-Finals</span>
-					<span ng-switch-when="1">Play-Off For Third Place</span>
-					<span ng-switch-when="0">Final</span>
-				</div>
-				<div class="mu-i-location">
-					<div class="mu-i-stadium">{{match.stadium}}</div>
-					<div class="mu-i-venue">{{match.city}}</div>
+	<div class="col-xs-12 clear-grid" style="border-bottom: 3px solid #bfbfbf;">
+		<div class="mh" data-ng-class="{fixture:!match.score.home, result:match.score.home}">
+			<div class="mh-i">
+				<div class="mh-i-location-date">
+					<span class="mh-i-stadium">{{match.stadium}}</span>
+					<span class="mh-i-venue">{{match.city}}</span>
+					<div class="mh-i-datetime">{{match.date|date:'dd MMM yyyy - HH:mm'}}</div>
+					<div class="mh-i-round" ng-switch on="match.level">
+						<span ng-switch-when="16">Group {{match.teamHome.team.group}}</span>
+						<span ng-switch-when="8">Round of 16</span>
+						<span ng-switch-when="4">Quarter-Finals</span>
+						<span ng-switch-when="2">Semi-Finals</span>
+						<span ng-switch-when="1">Play-Off For Third Place</span>
+						<span ng-switch-when="0">Final</span>
+					</div>
 				</div>
 			</div>
-			<div class="mu-m">
+			<div class="mh-m">
 				<div class="t home">
 					<div class="t-i i-4">
 						<span class="t-i-wrap">
-							<img ng-src="{{match.teamHome.team.flag}}" alt="{{match.teamHome.team.country}}" class="BRA i-4-flag flag"/>
+							<img ng-src="{{match.teamHome.team.flag}}" alt="{{match.teamHome.team.country}}" class="i-4-flag flag"/>
 						</span>
 					</div>
 					<div class="t-n">
 						<span class="t-nText ">{{match.teamHome.team.country}}</span>
+						<span class="t-nTri"></span>
 					</div>
 				</div>
 				<div class="t away">
 					<div class="t-i i-4">
-						<span class="t-i-wrap"><img ng-src="{{match.teamAway.team.flag}}" alt="{{match.teamAway.team.country}}" class="CRO i-4-flag flag"></span>
+						<span class="t-i-wrap">
+							<img ng-src="{{match.teamAway.team.flag}}" alt="{{match.teamAway.team.country}}" class="i-4-flag flag"/>
+						</span>
 					</div>
 					<div class="t-n">
 						<span class="t-nText ">{{match.teamAway.team.country}}</span>
+						<span class="t-nTri"></span>
 					</div>
 				</div>
 				<div class="s">
-					<div class="s-fixture">
-						<div class="s-status"> </div>
-						<div class="s-score s-date-HHmm">
-							<span class="s-scoreText">{{match.date|date:'HH:mm'}}</span>
-						</div>
+					<div class="s-status"><span data-ng-if="match.score.away">Fin</span></div>
+					<div class="s-score s-date-HHmm">
+						<span data-ng-if="!match.score.away" class="s-scoreText">{{match.date|date:'HH:mm'}}</span>
+						<span data-ng-if="match.score.away" class="s-scoreText">{{match.score}}</span>
 					</div>
 				</div>
-				<div class="mu-reasonwin"> </div>
+				<div class="mu-reasonwin">
+					<a data-ng-if="pronosticsOpen" class="s-scoreText" href="#" data-ng-click="makePronostic()">Predict the winner</a>
+				</div>
+				<div class="mu-reasonwin-abbr"></div>
+			</div>
+		</div>
+		<div class="pronostics">
+			<h4>{{bets.length}} Pronostics</h4>
+			<div class="p-m">
+				<div class="scale">
+					<div class="p-home" data-ng-style="getStyle(match.teamHome._id)">{{averageBets[match.teamHome._id]}} %</div>
+					<div class="p-away" data-ng-style="getStyle(match.teamAway._id)">{{averageBets[match.teamAway._id]}} %</div>
+				</div>
+			</div>
+			<a href="#" data-ng-click="showPronostics=!showPronostics">display pronostics <span class="caret"></span></a>
+		</div>
+		<div data-ng-show="showPronostics">
+			<div data-ng-repeat="bet in bets">
+				pronostic: {{bet.score.home}} - {{bet.score.away}}
 			</div>
 		</div>
 	</div>

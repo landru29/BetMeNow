@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('wcb.matches', ['wcb.system.crudRouteProvider', 'wcb.auth.security.authorization']);
+angular.module('wcb.matches', ['wcb.system.crudRouteProvider', 'wcb.auth.security.authorization', 'ui.bootstrap.modal']);

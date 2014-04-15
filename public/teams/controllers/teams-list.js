@@ -24,5 +24,9 @@ angular.module('wcb.teams').controller('TeamsListCtrl', [
         $location.path('teams');
       }
     };
+
+    $scope.showTeam = function(team) {
+      $location.path('/teams/show/' + team._id);
+    };
   }
 ]);
