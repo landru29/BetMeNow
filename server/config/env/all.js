@@ -14,6 +14,7 @@ module.exports = {
 	// The name of the MongoDB collection to store sessions in
 	sessionCollection: 'sessions',
   app: {
-    name: 'WCB - World Cup Brazil 2014'
+    name: 'WCB - World Cup Brazil 2014',
+    locale : 'en-gb'
   }
 };

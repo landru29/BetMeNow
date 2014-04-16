@@ -38,14 +38,14 @@ module.exports = function(app, passport, db) {
 
     // Only use logger for development environment
     if (process.env.NODE_ENV === 'development') {
-    // Prettify HTML
-    app.locals.pretty = true;
-    app.set('showStackError', true);
-        app.use(express.logger('dev'));
+      // Prettify HTML
+      app.locals.pretty = true;
+      app.set('showStackError', true);
+      app.use(express.logger('dev'));
     }
 
-  // assign the template engine to .html files
-  app.engine('html', consolidate[config.templateEngine]);
+    // assign the template engine to .html files
+    app.engine('html', consolidate[config.templateEngine]);
 
     // set .html as the default extension
     app.set('view engine', 'html');
@@ -57,106 +57,114 @@ module.exports = function(app, passport, db) {
     app.enable('jsonp callback');
 
     app.configure(function() {
-        // The cookieParser should be above session
-        app.use(express.cookieParser());
+      // The cookieParser should be above session
+      app.use(express.cookieParser());
 
-        // Request body parsing middleware should be above methodOverride
-        app.use(express.urlencoded());
-        app.use(express.json());
-        app.use(expressValidator());
-        app.use(express.methodOverride());
+      // Request body parsing middleware should be above methodOverride
+      app.use(express.urlencoded());
+      app.use(express.json());
+      app.use(expressValidator());
+      app.use(express.methodOverride());
 
-        // Import your asset file
-        var assets = require('./assets.json');
-        assetmanager.init({
-            js: assets.js,
-            css: assets.css,
-            debug: (process.env.NODE_ENV !== 'production'),
-            webroot: '(public/)'
-        });
-        // Add assets to local variables
-        app.use(function(req, res, next) {
-            res.locals({
-                assets: assetmanager.assets
-            });
-            next();
-        });
-
-        // Express/Mongo session storage
-        app.use(express.session({
-            secret: config.sessionSecret,
-            store: new mongoStore({
-                db: db.connection.db,
-                collection: config.sessionCollection
-            })
-        }));
-
-        // Use passport session
-        app.use(passport.initialize());
-        app.use(passport.session());
-
-        // Connect flash for flash messages
-        app.use(flash());
-
-        // Dynamic helpers
-        app.use(helpers(config.app.name));
-
-        // Routes should be at the last
-        app.use(app.router);
-
-        var routes_path = appPath + '/server/routes';
-        var walk = function(path, done) {
-          var files = fs.readdirSync(path),
-              nbFiles = files.length;
-          files.forEach(function(file, index) {
-            var newPath = path + '/' + file;
-            var stat = fs.statSync(newPath);
-            if (stat.isFile()) {
-              if (/\.js$/.test(file)) {
-                require(newPath)(app, passport);
-              }
-              // We skip the app/routes/middlewares directory as it is meant to be
-              // used and shared by routes as further middlewares and is not a
-              // route by itself
-            } else if (stat.isDirectory() && file !== 'middlewares') {
-              walk(newPath);
-            }
-            if (index === nbFiles-1) {
-              done();
-            }
-          });
-        };
-        walk(routes_path, function() {
-          app.all('/*', function (req, res) {
-            res.render('index', {
-              user: req.user ? JSON.stringify(req.user.name) : 'null',
-              roles: req.user ? JSON.stringify(req.user.roles) : JSON.stringify(['annonymous'])
-            });
-          });
-        });
-
-    // Assume "not found" in the error msgs is a 404. this is somewhat
-    // silly, but valid, you can do whatever you like, set properties,
-    // use instanceof etc.
-    app.use(function(err, req, res, next) {
-      // Treat as 404
-      if (~err.message.indexOf('not found')) return next();
-
-      // Log it
-      console.error(err.stack);
-
-      // Error page
-      res.status(500).render('500', {
-        error: err.stack
+      // Import your asset file
+      var assets = require('./assets.json');
+      assetmanager.init({
+        js: assets.js,
+        css: assets.css,
+        debug: (process.env.NODE_ENV !== 'production'),
+        webroot: '(public/)'
       });
-    });
-
-    // Assume 404 since no middleware responded
-    app.use(function(req, res) {
-      res.status(404).render('404', {
-        url: req.originalUrl,
-        error: 'Not found'
+      // Add assets to local variables
+      app.use(function(req, res, next) {
+        res.locals({
+          assets: assetmanager.assets
+        });
+        next();
       });
-    });
+
+      // Express/Mongo session storage
+      app.use(express.session({
+        secret: config.sessionSecret,
+        store: new mongoStore({
+          db: db.connection.db,
+          collection: config.sessionCollection
+        })
+      }));
+
+      // Use passport session
+      app.use(passport.initialize());
+      app.use(passport.session());
+
+      // Connect flash for flash messages
+      app.use(flash());
+
+      // Dynamic helpers
+      app.use(helpers(config.app.name));
+      app.use(function(req, res, next) {
+        if (!req.session.locale) {
+          req.session.locale = config.app.locale;
+        }
+        console.log('locale session: '+req.session.locale, 'locale config: '+config.app.locale);
+        res.locals({locale: req.session.locale});
+        next();
+      });
+
+      // Routes should be at the last
+      app.use(app.router);
+
+      var routes_path = appPath + '/server/routes';
+      var walk = function(path, done) {
+        var files = fs.readdirSync(path),
+            nbFiles = files.length;
+        files.forEach(function(file, index) {
+          var newPath = path + '/' + file;
+          var stat = fs.statSync(newPath);
+          if (stat.isFile()) {
+            if (/\.js$/.test(file)) {
+              require(newPath)(app, passport);
+            }
+            // We skip the app/routes/middlewares directory as it is meant to be
+            // used and shared by routes as further middlewares and is not a
+            // route by itself
+          } else if (stat.isDirectory() && file !== 'middlewares') {
+            walk(newPath);
+          }
+          if (index === nbFiles-1) {
+            done();
+          }
+        });
+      };
+      walk(routes_path, function() {
+        app.all('/*', function (req, res) {
+          res.render('index', {
+            user: req.user ? JSON.stringify(req.user.name) : 'null',
+            roles: req.user ? JSON.stringify(req.user.roles) : JSON.stringify(['annonymous'])
+          });
+        });
+      });
+
+      // Assume "not found" in the error msgs is a 404. this is somewhat
+      // silly, but valid, you can do whatever you like, set properties,
+      // use instanceof etc.
+      app.use(function(err, req, res, next) {
+        // Treat as 404
+        if (~err.message.indexOf('not found')) return next();
+
+        // Log it
+        console.error(err.stack);
+
+        // Error page
+        res.status(500).render('500', {
+          error: err.stack
+        });
+      });
+
+      // Assume 404 since no middleware responded
+      app.use(function(req, res) {
+        res.status(404).render('404', {
+          url: req.originalUrl,
+          error: 'Not found'
+        });
+      });
     });
 };
