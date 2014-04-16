@@ -97,7 +97,10 @@ exports.user = function(req, res, next, id) {
 };
 
 exports.bets = function(req, res) {
-  var criteria = {user: req.user._id};
+  if (req.profile === null) {
+    return res.json(403, {message: 'You must be authenticated for get your bets'});
+  }
+  var criteria = {user: req.profile._id};
   if (req.param('match')) {
     criteria.match = req.param('match');
   }
