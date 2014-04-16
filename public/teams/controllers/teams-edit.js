@@ -23,7 +23,6 @@ angular.module('wcb.teams').controller('TeamsEditCtrl', [
 			team.$save(function(response) {
 				$location.path('teams/' + response._id);
 			}, function(response) {
-				console.log(response.data);
 				$scope.errors = response.data.errors;
 			});
 

@@ -83,8 +83,8 @@ h1 {
 }
 .mh .mh-i-report-hl {
   position: absolute;
-  top: 0px;
-  right: 0px;
+  top: 0;
+  right: 0;
 }
 .mh .mh-i .mh-i-round,
 .mh .mh-i .mh-i-location-date {

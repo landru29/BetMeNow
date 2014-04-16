@@ -9,7 +9,6 @@ angular.module('wcb.system').factory('Global', [
             authenticated: !! window.user,
             roles: window.roles,
             hasRole: function(role) {
-              console.log(role, this.roles);
               return this.roles.indexOf(role);
             }
         };

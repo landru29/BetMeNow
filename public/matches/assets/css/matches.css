@@ -198,8 +198,6 @@
 }
 .pronostics .scale > div {
 	display: table-cell;
-	margin: 0;
-	padding: 0;
 }
 .pronostics .p-m .scale .p-home {
 	background-color: lightgreen;

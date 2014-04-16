@@ -34,7 +34,6 @@ angular.module('wcb.matches')
         $scope.match.date = new Date(match.date);
         $scope.pronosticsOpen = $scope.match.date.getTime() > now.getTime();
         if (bets.length <= 0) {
-          console.log(match);
           $scope.averageBets[match.teamHome._id] = 0;
           $scope.averageBets[match.teamAway._id] = 0;
         } else {
@@ -87,7 +86,6 @@ angular.module('wcb.matches')
         bet.winner = bet.winner._id;
       }
       $scope.bet = bet;
-      console.log('bet', bet);
       $scope.modalInstance = $modalInstance;
 
       $scope.cancelBet = function() {
@@ -95,7 +93,6 @@ angular.module('wcb.matches')
       };
 
       $scope.setWinner = function(rtmId) {
-        console.log(rtmId);
         $scope.bet.winner = rtmId;
       };
 
@@ -143,7 +140,6 @@ angular.module('wcb.matches')
           } else {
             $scope.error = data.data.message;
           }
-          console.error(data);
         });
       };
     }

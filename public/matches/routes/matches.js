@@ -42,7 +42,6 @@ angular.module('wcb.matches')
           bets: ['$route', '$http', function($route, $http) {
             return $http.get('/api/matches/' + $route.current.params.itemId + '/bets')
               .then(function(data) {
-                console.log(data);
                 return data.data;
               });
           }]

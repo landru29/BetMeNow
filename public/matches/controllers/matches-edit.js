@@ -9,7 +9,6 @@ angular.module('wcb.matches')
     'match',
 		'rtms',
 		function ($scope, $location, notifications, Matches, match, rtms) {
-      console.log('MatchesEditCtrl');
 			$scope.levels = [
 				{key: 16, value: 'GROUPS'},
 				{key: 8, value: 'ROUND OF 16'},
@@ -33,9 +32,7 @@ angular.module('wcb.matches')
 					$scope.match.date = new Date($scope.minDate.getTime());
 				}
 			} else {
-				console.log(typeof match.level);
 				for (var i=0; i<$scope.length; ++i) {
-					console.log($scope.levels[i].key);
 					if ($scope.levels[i].key === match.level) {
 						$scope.match.level = $scope.levels[i];
 						break;
@@ -52,12 +49,10 @@ angular.module('wcb.matches')
 						away = true;
 					}
 					if (home && away) {
-						console.log('r: ' + r);
 						break;
 					}
 				}
 			}
-			console.log($scope.match);
 
 			$scope.save = function() {
 				if (!angular.isDefined($scope.match._id)) {
@@ -74,7 +69,6 @@ angular.module('wcb.matches')
 				}
 				this.date.setHours(this.time.getHours());
 				this.date.setMinutes(this.time.getMinutes());
-				console.log(this.teamA);
 				var match = new Matches({
 					level: this.level,
 					date: this.date,
@@ -88,7 +82,6 @@ angular.module('wcb.matches')
 					$location.path('/matches/show/' + response._id);
 					//$location.path('matches/create');
 				}, function(response) {
-					console.log(response.data);
 					$scope.errors = response.data.errors;
 				});
 				$scope.stadium = '';
@@ -116,7 +109,6 @@ angular.module('wcb.matches')
 			};
 
 			$scope.update = function() {
-				console.log('update');
 				if (!$scope.submit) {
 					// Envoyer une notification
 					return false;
