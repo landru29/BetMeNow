@@ -22,12 +22,12 @@ module.exports = function(passport, db) {
 	};
 	walk(models_path);
 
-    // Bootstrap passport config
-    require(appPath + '/server/config/passport')(passport);
+  // Bootstrap passport config
+  require(appPath + '/server/config/passport')(passport);
 
-    // Express settings
-    var app = express();
-    require(appPath + '/server/config/express')(app, passport, db);
+  // Express settings
+  var app = express();
+  require(appPath + '/server/config/express')(app, passport, db);
 
-    return app;
+  return app;
 };

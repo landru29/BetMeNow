@@ -11,3 +11,5 @@ modules/public/
 modules/views/
 /public/build/
 .vagrant/
+/scripts/fifa_files/*
+/scripts/fifa.html
