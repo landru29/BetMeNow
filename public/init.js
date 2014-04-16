@@ -10,10 +10,15 @@ angular.element(document).ready(function() {
 });
 
 // Default modules
-var modules = ['ngRoute', 'ngLocale', 'ngCookies', 'ngResource', 'ui.bootstrap', 'wcb.system', 'wcb.auth', 'wcb.matches', 'wcb.teams'];
+var modules = [
+  'ngRoute', 'ngLocale', 'ngCookies', 'ngResource',
+  'ui.bootstrap',
+  'wcb.i18n', 'wcb.system', 'wcb.auth', 'wcb.matches', 'wcb.teams'
+];
 
 // Combined modules
 angular.module('wcb', modules)
+  .constant('wcb.locale', window.locale)
   .config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
     $locationProvider.html5Mode(true);
     $routeProvider.otherwise({redirectTo:'/'});
