@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-    db: 'mongodb://localhost/wcb-dev',
+    db: process.env.MONGOHQ_URL || 'mongodb://localhost/wcb-dev',
     app: {
         name: 'WCB - World Cup Brazil 2014 - Development'
     }
