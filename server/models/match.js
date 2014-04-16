@@ -70,10 +70,10 @@ MatchSchema.path('city').validate(function(city) {
 MatchSchema.path('level').validate(function(level) {
 	return ([1,2,4,8,16,32].indexOf(level) >= 0);
 }, 'Level must be one of: 32 - 16 - 8 - 4 - 2 - 1');
-MatchSchema.path('date').validate(function(date) {
-	var now = new Date();
-    return date > now;
-}, 'Date must be in the future');
+// MatchSchema.path('date').validate(function(date) {
+// 	var now = new Date();
+//     return date > now;
+// }, 'Date must be in the future');
 MatchSchema.path('score.away').validate(function(score) {
   if (score !== null)
     return score >= 0;
