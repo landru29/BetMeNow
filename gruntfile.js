@@ -9,14 +9,14 @@ module.exports = function(grunt) {
         assets: grunt.file.readJSON('server/config/assets.json'),
         watch: {
             js: {
-                files: ['gruntfile.js', 'server.js', 'server/**/*.js', 'public/js/**', 'test/**/*.js'],
+                files: ['gruntfile.js', 'server.js', 'server/**/*.js', '!public/vendor/**/*.js', '!public/build/**/*.js', 'public/**/*.js', 'test/**/*.js'],
                 tasks: ['jshint'],
                 options: {
                     livereload: true
                 }
             },
             html: {
-                files: ['public/views/**', 'server/views/**'],
+                files: ['public/**/views/*', 'server/views/**'],
                 options: {
                     livereload: true
                 }
@@ -31,7 +31,7 @@ module.exports = function(grunt) {
         },
         jshint: {
             all: {
-                src: ['gruntfile.js', 'server.js', 'server/**/*.js', 'public/js/**', 'test/**/*.js', '!test/coverage/**/*.js'],
+                src: ['gruntfile.js', 'server.js', 'server/**/*.js', '!public/vendor/**/*.js', '!public/build/**/*.js', 'public/**/*.js', 'test/**/*.js', '!test/coverage/**/*.js'],
                 options: {
                     jshintrc: true
                 }
