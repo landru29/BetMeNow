@@ -40,11 +40,11 @@ angular.module('wcb.matches')
 				}
 				var home = false, away=false;
 				for (var r=0; r<$scope.rtms.length; ++r) {
-					if (match.teamHome._id == $scope.rtms[r]._id) {
+					if (match.teamHome._id === $scope.rtms[r]._id) {
 						$scope.match.teamHome = $scope.rtms[r]._id;
 						home = true;
 					}
-					if (match.teamAway._id == $scope.rtms[r]._id) {
+					if (match.teamAway._id === $scope.rtms[r]._id) {
 						$scope.match.teamAway = $scope.rtms[r]._id;
 						away = true;
 					}

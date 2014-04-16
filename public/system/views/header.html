@@ -12,13 +12,15 @@
 	</div>
 
 	<div class="account">
-		<div id="text-edit">
-			<div class="pull-right" data-ng-show="isAuthenticated()"></div>
-		</div>
 		<ul class="navbar-nav nav" data-ng-hide="isAuthenticated()">
-			<li><a href="#" data-ng-click="register()">Register</a></li>
+			<li>
+				<select data-ng-model="locale" name="locale" style="margin-top:15px;"
+					data-ng-options="locale.key as locale.label for locale in locales" data-ng-change="changeLocale()"></select>
+			</li>
 			<li class="divider-vertical"></li>
-			<li><a href="#" data-ng-click="login()">Login</a></li>
+			<li><a href="#" data-ng-click="register()">{{messages['menu.register']}}</a></li>
+			<li class="divider-vertical"></li>
+			<li><a href="#" data-ng-click="login()">{{messages['menu.signin']}}</a></li>
 		</ul>
 		<ul class="navbar-nav nav" data-ng-show="isAuthenticated()">
 			<li class="dropdown">
@@ -26,7 +28,7 @@
 					{{user().name}} <b class="caret"></b>
 				</a>
 				<ul class="dropdown-menu">
-					<li><a data-ng-click="logout()" href="#">Signout</a></li>
+					<li><a data-ng-click="logout()" href="#">{{messages['menu.signout']}}</a></li>
 				</ul>
 			</li>
 		</ul>

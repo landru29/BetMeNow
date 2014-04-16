@@ -25,8 +25,8 @@ angular.module('wcb.auth.security.service', [
     }
     loginDialog = $modal.open(
       {
-        templateUrl: '/public/auth/views/login.html', 
-        controller: 'LoginCtrlBis'
+        templateUrl: '/public/auth/views/login.html',
+        controller: 'LoginCtrl'
       }
     );
     loginDialog.result.then(onLoginDialogClose);
@@ -54,7 +54,7 @@ angular.module('wcb.auth.security.service', [
     }
     registerDialog = $modal.open(
       {
-        templateUrl: '/public/auth/views/register.html', 
+        templateUrl: '/public/auth/views/register.html',
         controller: 'RegisterCtrl'
       }
     );
@@ -158,7 +158,7 @@ angular.module('wcb.auth.security.service', [
     isAuthenticated: function(){
       return !!service.currentUser;
     },
-    
+
     // Is the current user an adminstrator?
     isAdmin: function() {
       return !!(service.currentUser && service.currentUser.roles.indexOf('admin') >= 0);

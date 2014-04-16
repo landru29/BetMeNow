@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('wcb.auth.login', [/*'wcb.system.localizedMessages', */'wcb.auth.security'])
-  .controller('LoginCtrlBis', ['$scope', 'security'/*, 'localizedMessages'*/, function($scope, security/*, localizedMessages*/) {
+angular.module('wcb.auth.login', ['wcb.system.localizedMessages', 'wcb.auth.security'])
+  .controller('LoginCtrl', ['$scope', 'security', 'localizedMessages', function($scope, security, localizedMessages) {
     // The model for this form
     $scope.user = {};
 
@@ -13,8 +13,8 @@ angular.module('wcb.auth.login', [/*'wcb.system.localizedMessages', */'wcb.auth.
     $scope.authReason = null;
     if ( security.getLoginReason() ) {
       $scope.authReason = ( security.isAuthenticated() ) ?
-        /*localizedMessages.get(*/'login.reason.notAuthorized'/*)*/ :
-        /*localizedMessages.get(*/'login.reason.notAuthenticated'/*)*/;
+        localizedMessages.get('login.reason.notAuthorized') :
+        localizedMessages.get('login.reason.notAuthenticated');
     }
 
     // Attempt to authenticate the user specified in the form's model
@@ -27,11 +27,11 @@ angular.module('wcb.auth.login', [/*'wcb.system.localizedMessages', */'wcb.auth.
         .then(function(loggedIn) {
           if ( !loggedIn ) {
             // If we get here then the login failed due to bad credentials
-            $scope.authError = /*localizedMessages.get(*/'login.error.invalidCredentials'/*)*/;
+            $scope.authError = localizedMessages.get('login.error.invalidCredentials');
           }
         }, function(x) {
           // If we get here then there was a problem with the login request to the server
-          $scope.authError = /*localizedMessages.get(*/'login.error.serverError: ' + x/*, { exception: x })*/;
+          $scope.authError = localizedMessages.get('login.error.serverError: ', { exception: x });
         });
     };
 
@@ -47,40 +47,47 @@ angular.module('wcb.auth.login', [/*'wcb.system.localizedMessages', */'wcb.auth.
       security.showSignup();
     };
   }])
-  .controller('RegisterCtrl', ['$scope','$rootScope','$http','$location', 'security', function($scope, $rootScope, $http, $location, security) {
-    $scope.user = {};
+  .controller('RegisterCtrl', [
+    '$scope','$rootScope','$http','$location', '$sce', 'security',
+    function($scope, $rootScope, $http, $location, $sce, security) {
+      $scope.user = {};
 
-    // Attempt to authenticate the user specified in the form's model
-    $scope.register = function() {
-      $scope.usernameError = null;
-      $scope.registerError = null;
-      // Clear any previous security errors
-      $scope.authError = null;
+      $scope.trustMessage = function(message) {
+        return $sce.trustAsHtml(message);
+      };
 
-      // Try to login
-      security.register({
-        email: $scope.user.email, 
-        password: $scope.user.password,
-        confirmPassword: $scope.user.confirmPassword,
-        username: $scope.user.username,
-        name: $scope.user.fullname
-      })
-        .then(null, function(error) {
-          // Error: authentication failed
-          if (error === 'Username already taken') {
-            $scope.usernameError = error;
-          }
-          else {
-            $scope.registerError = error;
-          }
-        });
-    };
+      // Attempt to authenticate the user specified in the form's model
+      $scope.register = function() {
+        $scope.usernameError = null;
+        $scope.registerError = null;
+        // Clear any previous security errors
+        $scope.authError = null;
 
-    $scope.closeRegister = function() {
-      security.cancelRegister();
-    };
+        // Try to login
+        security.register({
+          email: $scope.user.email,
+          password: $scope.user.password,
+          confirmPassword: $scope.user.confirmPassword,
+          username: $scope.user.username,
+          name: $scope.user.fullname
+        })
+          .then(null, function(error) {
+            // Error: authentication failed
+            if (error === 'Username already taken') {
+              $scope.usernameError = error;
+            }
+            else {
+              $scope.registerError = error;
+            }
+          });
+      };
 
-    $scope.login = function() {
-      security.showLogin();
-    };
-}]);
+      $scope.closeRegister = function() {
+        security.cancelRegister();
+      };
+
+      $scope.login = function() {
+        security.showLogin();
+      };
+    }
+  ]);

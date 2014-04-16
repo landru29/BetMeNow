@@ -1,5 +1,4 @@
 'use strict';
 
-angular.module('wcb.system').controller('HomeCtrl', ['$scope', 'Global', function ($scope, Global) {
-    $scope.global = Global;
+angular.module('wcb.system').controller('HomeCtrl', ['$scope', function ($scope) {
 }]);
