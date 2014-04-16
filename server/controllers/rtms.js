@@ -5,7 +5,6 @@
  */
 var mongoose = require('mongoose'),
     RTM = mongoose.model('RTM'),
-	Team = mongoose.model('Team'),
     _ = require('lodash');
 
 

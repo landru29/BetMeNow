@@ -4,14 +4,6 @@
 var bets = require('../controllers/bets');
 var authorization = require('./middlewares/authorization');
 
-// RTM authorization helpers
-var hasAuthorization = function(req, res, next) {
-  if (! req.user.hasRole('manager') && ! req.user.hasRole('admin')) {
-        return res.send(401, 'User is not authorized');
-    }
-    next();
-};
-
 module.exports = function(app) {
 
     app.get('/api/bets', authorization.requiresLogin, bets.all);

@@ -92,7 +92,7 @@ exports.show = function(req, res) {
       team.matches = [];
       return res.jsonp(team);
     }
-    var matches = [], criteria = [];
+    var criteria = [];
     for (var i=0; i<rtms.length; ++i) {
       criteria.push({teamHome: rtms[i]._id});
       criteria.push({teamAway: rtms[i]._id});
