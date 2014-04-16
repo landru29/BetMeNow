@@ -13,5 +13,8 @@ module.exports = {
 	// is used to compute a session hash
 	sessionSecret: 'l-K|3xm/)n<4bgIzd>8S+q7JX$bDQ._t1gze/#|~z1LTvOiS ?88CP;30Jt%Gv5u',
 	// The name of the MongoDB collection to store sessions in
-	sessionCollection: 'sessions'
+	sessionCollection: 'sessions',
+  app: {
+    name: 'WCB - World Cup Brazil 2014'
+  }
 };
