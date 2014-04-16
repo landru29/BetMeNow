@@ -7,10 +7,11 @@ angular.module('wcb.matches')
     '$http',
     '$modal',
     'security',
+    'securityAuthorization',
     'Matches',
     'match',
     'bets',
-    function ($scope, $location, $http, $modal, security, Matches, match, bets) {
+    function ($scope, $location, $http, $modal, security, securityAuthorization, Matches, match, bets) {
       $scope.betGroups = bets;
       $scope.bets = [];
       $scope.averageBets = {};
@@ -51,6 +52,7 @@ angular.module('wcb.matches')
           templateUrl: '/public/matches/views/bet.html',
           controller: 'BetEditCtrl',
           resolve: {
+            currentUser: securityAuthorization.requireAuthenticatedUser,
             match: function() { return $scope.match; },
             bet: function() {
               return $http.get('/api/users/me/bets?match=' + $scope.match._id)
