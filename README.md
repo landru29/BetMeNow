@@ -1,5 +1,7 @@
 # World Cup Brazil 2014
 
+The site is accessible on (http://wcb2014.herokuapp.com/).
+
 ## Dependencies
 
 * Node.js
