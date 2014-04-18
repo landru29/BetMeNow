@@ -135,7 +135,19 @@ exports.all = function(req, res) {
         $group: {
           _id: '$group',
           teams: {
-            $push: '$$ROOT'
+            $push: /* Version: 2.6 => '$$ROOT' */ {
+              _id: '$_id',
+              country: '$country',
+              group: '$group',
+              flag: '$flag',
+              points: '$points',
+              played: '$played',
+              won: '$won',
+              lost: '$lost',
+              draw: '$draw',
+              'goals.for': '$goals.for',
+              'goals.against': '$goals.against'
+            }
           }
         }
       })
@@ -146,9 +158,7 @@ exports.all = function(req, res) {
   }
   query.exec(function(err, teams) {
       if (err) {
-        res.render('error', {
-          status: 500
-        });
+        res.json(500, {message: err});
       } else {
         res.jsonp(teams);
       }

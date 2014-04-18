@@ -104,16 +104,7 @@ exports.levels = function(req, res) {
           day : { $dayOfMonth : '$date' }
         }}
       }
-    }/*, {
-      $group: {
-        _id: {
-          year : { $year : '$date' },
-          month : { $month : '$date' },
-          day : { $dayOfMonth : '$date' }
-        },
-        level: {$sum: '$level'}
-      }
-    }*/,{
+    },{
       $project: {
         _id: 0,
         level: '$_id.level',
@@ -154,7 +145,18 @@ exports.all = function(req, res) {
             day : { $dayOfMonth : '$date' },
           },
           level: {$max: '$level'},
-          matches: { $push: '$$ROOT' }
+          matches: {
+            $push: /* Version 2.6 => '$$ROOT' */ {
+              level: '$level',
+              date: '$date',
+              stadium: '$stadium',
+              city: '$city',
+              teamHome: '$teamHome',
+              teamAway: '$teamAway',
+              'score.away': '$score.away',
+              'score.home': '$score.home'
+            }
+          }
         }
       },
 			{
