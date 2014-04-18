@@ -21,10 +21,6 @@ var TeamSchema = new Schema({
         trim: true,
         index: true
     },
-	points: {
-		type: Number,
-		default: 0
-	},
 	group: {
 		type: String,
 		default: '',
@@ -34,6 +30,40 @@ var TeamSchema = new Schema({
         type: String,
 		default: '',
 		trim: true
+    },
+    points: {
+        type: Number,
+        default: 0
+    },
+    played: {
+        type: Number,
+        default: 0
+    },
+    won: {
+        type: Number,
+        default: 0
+    },
+    lost: {
+        type: Number,
+        default: 0
+    },
+    draw: {
+        type: Number,
+        default: 0
+    },
+    goals: {
+        for: {
+            type: Number,
+            default: 0
+        },
+        against: {
+            type: Number,
+            default: 0
+        }
+    },
+    winner: {
+        type: Boolean,
+        default: false
     }
 });
 
