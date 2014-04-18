@@ -10,7 +10,7 @@ angular.module('wcb.matches')
 		'rtms',
 		function ($scope, $location, notifications, Matches, match, rtms) {
 			$scope.levels = [
-				{key: 16, value: 'GROUPS'},
+				{key: 16, value: 'GROUP STAGE'},
 				{key: 8, value: 'ROUND OF 16'},
 				{key: 4, value: 'QUARTER-FINALS'},
 				{key: 2, value: 'SEMI-FINALS'},

@@ -9,7 +9,15 @@ angular.module('wcb.matches')
     'matches',
     function ($scope, $location, Global, Matches, matches) {
       $scope.global = Global;
-      $scope.matches = matches;
+      $scope.levels = matches;
+      $scope.levelLabs = {
+        '16': 'GROUP STAGE',
+        '8': 'ROUND OF 16',
+        '4': 'QUARTER-FINALS',
+        '2': 'SEMI-FINALS',
+        '1': 'PLAY-OFF FOR THIRD PLACE',
+        '0': 'FINAL'
+      };
 
       $scope.find = function() {
         Matches.query({group: true}, function(matches) {

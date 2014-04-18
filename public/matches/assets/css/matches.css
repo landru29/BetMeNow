@@ -2,16 +2,23 @@
 	margin-bottom: 40px;
 	margin-top: 20px;
 }
-.match-list .match-list-date h3 .h3-wrap {
-	width: 988px;
-	height: 50px;
-	display: table-cell;
-	border-bottom: solid 1px #474747;
+.match-list .match-list-round h2 {
+	color: #999999;
+	height: 65px;
+	font-size: 24px;
+	line-height: 65px;
+	text-transform: uppercase;
 }
 .match-list .match-list-date h3 {
 	color: #474747;
 	font-size: 21px;
 	line-height: 50px;
+	border-bottom: solid 1px #474747;
+}
+.match-list .match-list-date h3 .h3-wrap {
+	width: 988px;
+	height: 50px;
+	display: table-cell;
 }
 .flag {
 	border: 1px solid #c7c6c6;
@@ -125,11 +132,11 @@
 .col-xs-12 .t-i .t-i-wrap {
 	height: 80px;
 }
-.t .t-n .t-nText, 
-.t .t-i .t-nText, 
-.t .t-n .t-i-wrap, 
-.t .t-i .t-i-wrap, 
-.t .t-n .t-nTri, 
+.t .t-n .t-nText,
+.t .t-i .t-nText,
+.t .t-n .t-i-wrap,
+.t .t-i .t-i-wrap,
+.t .t-n .t-nTri,
 .t .t-i .t-nTri {
 	display: table-cell;
 	vertical-align: middle;
@@ -143,7 +150,7 @@
 	color: #474747;
 	text-transform: uppercase;
 }
-.col-xs-12 .t .t-i + .t-n, 
+.col-xs-12 .t .t-i + .t-n,
 .col-xs-12 .t.home .t-i + .t-n {
 	margin-left: 63px;
 }
