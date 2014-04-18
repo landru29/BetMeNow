@@ -145,8 +145,7 @@ exports.all = function(req, res) {
               won: '$won',
               lost: '$lost',
               draw: '$draw',
-              'goals.for': '$goals.for',
-              'goals.against': '$goals.against'
+              'goals': '$goals'
             }
           }
         }
