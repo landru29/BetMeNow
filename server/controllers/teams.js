@@ -135,13 +135,7 @@ exports.all = function(req, res) {
         $group: {
           _id: '$group',
           teams: {
-            $push: {
-                            _id: '$_id',
-              title: '$title',
-              country: '$country',
-              flag: '$flag',
-              points: '$points'
-            }
+            $push: '$$ROOT'
           }
         }
       })

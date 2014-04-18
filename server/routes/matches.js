@@ -15,6 +15,7 @@ var hasAuthorization = function(req, res, next) {
 module.exports = function(app) {
 
     app.get('/api/matches', matches.all);
+    app.get('/api/matches/levels', matches.levels);
     app.post('/api/matches', authorization.requiresLogin, hasAuthorization, matches.create);
     app.get('/api/matches/:matchId', matches.show);
     app.get('/api/matches/:matchId/bets', matches.bets);

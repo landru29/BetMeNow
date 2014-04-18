@@ -90,6 +90,54 @@ exports.show = function(req, res) {
 	});
 };
 
+exports.levels = function(req, res) {
+  Match.aggregate(
+    {$match: {}},
+    {
+      $group: {
+        _id: {
+          level: '$level'
+        },
+        dates: { $addToSet: {
+          year : { $year : '$date' },
+          month : { $month : '$date' },
+          day : { $dayOfMonth : '$date' }
+        }}
+      }
+    }/*, {
+      $group: {
+        _id: {
+          year : { $year : '$date' },
+          month : { $month : '$date' },
+          day : { $dayOfMonth : '$date' }
+        },
+        level: {$sum: '$level'}
+      }
+    }*/,{
+      $project: {
+        _id: 0,
+        level: '$_id.level',
+        dates: '$dates'
+      }
+    })
+    .sort('-level dates')
+    .exec(function(err, levels) {
+      if (err) {
+        res.json(500, {message: err});
+      } else {
+        for (var i = 0; i < levels.length; i++) {
+          for (var j = 0; j < levels[i].dates.length; j++) {
+            levels[i].dates[j] = new Date(levels[i].dates[j].year, levels[i].dates[j].month-1, levels[i].dates[j].day);
+          }
+          levels[i].dates.sort(function(a, b) {
+            return (a === b) ? 0 : (a < b) ? -1 : 1;
+          });
+        }
+        res.jsonp(levels);
+      }
+    });
+};
+
 /**
  * List of matches
  */
@@ -98,47 +146,53 @@ exports.all = function(req, res) {
 	if (req.param('group')) {
 		query = Match.aggregate(
 			{$match: {}},
+      {
+        $group: {
+          _id: {
+            year : { $year : '$date' },
+            month : { $month : '$date' },
+            day : { $dayOfMonth : '$date' },
+          },
+          level: {$max: '$level'},
+          matches: { $push: '$$ROOT' }
+        }
+      },
 			{
-				$group: {
-					_id: {
-						year : { $year : '$date' },
-						month : { $month : '$date' },
-						day : { $dayOfMonth : '$date' },
-					},
-					matches: {
-						$push: {
-							_id: '$_id',
-							date: '$date',
-							stadium: '$stadium',
-							city: '$city',
-							level: '$level',
-							teamHome: '$teamHome',
-							teamAway: '$teamAway',
-							score: '$score'
-						}
-					}
-				}
-			})
-			.sort('_id');
+        $group: {
+          _id: '$level',
+          matches: { $push: {
+            _id: '$_id',
+            matches: '$$ROOT.matches'
+          } }
+        }
+      }, {
+        $project: {
+          _id: 0,
+          level: '$_id',
+          matchesByDate: '$matches'
+        }
+      })
+			.sort('-level');
 	} else {
 		query = Match.find({})
 			.populate('teamHome', 'team')
 			.populate('teamAway', 'team')
 			.sort('date');
 	}
-	query.exec(function(err, matches) {
+	query.exec(function(err, levels) {
 		if (err) {
-			res.json(500);
+			res.json(500, {message: err});
 		} else {
-			if (matches.length > 0 && matches[0].hasOwnProperty('matches')) {
+			if (levels.length > 0 && levels[0].hasOwnProperty('matchesByDate')) {
+        // return res.json(levels);
 				// populate teams
 				Team.find({}, function(err, teams) {
 					if (err) {
-						res.json(500);
+						res.json(500, {message: err});
 					} else {
 						RTM.find({}, function(err, rtms) {
               if (err) {
-								return res.json(500);
+								return res.json(500, {message: err});
 							}
 							var getTeam = function(rtmId) {
 								for (var r=0; r<rtms.length; ++r) {
@@ -152,25 +206,30 @@ exports.all = function(req, res) {
 								}
 								return null;
 							};
-							var group;
-							for (var i=0; i < matches.length; ++i) {
-								group = matches[i];
-								matches[i]._id = new Date(group._id.year, group._id.month - 1, group._id.day);
-								for (var j=0; j < group.matches.length; ++j) {
-									// Find teams
-									var teamHomeId = group.matches[j].teamHome;
-									var teamAwayId = group.matches[j].teamAway;
-									group.matches[j].teamA = getTeam(teamHomeId);
-									group.matches[j].teamB = getTeam(teamAwayId);
-								}
+							var group, level;
+							for (var l=0; l < levels.length; ++l) {
+                for (var i = 0; i < levels[l].matchesByDate.length; i++) {
+								  group = levels[l].matchesByDate[i];
+                  group._id = new Date(group._id.year, group._id.month - 1, group._id.day);
+  								for (var j=0; j < group.matches.length; ++j) {
+  									// Find teams
+  									var teamHomeId = group.matches[j].teamHome;
+  									var teamAwayId = group.matches[j].teamAway;
+  									group.matches[j].teamA = getTeam(teamHomeId);
+  									group.matches[j].teamB = getTeam(teamAwayId);
+  								}
+                }
+                levels[l].matchesByDate.sort(function(a, b) {
+                  return (a._id === b._id) ? 0 : (a._id < b._id) ? -1 : 1;
+                });
 							}
-							res.jsonp(matches);
+							res.jsonp(levels);
 
 						});
 					}
 				});
 			} else {
-				res.jsonp(matches);
+				res.jsonp(levels);
 			}
 		}
 	});
