@@ -8,18 +8,20 @@
 			<div class="col-md-1"><abbr title="Played">MP</abbr></div>
 			<div class="col-md-1"><abbr title="Won">W</abbr></div>
 			<div class="col-md-1"><abbr title="Lost">L</abbr></div>
+			<div class="col-md-1"><abbr title="Draw">D</abbr></div>
 			<div class="col-md-1"><abbr title="Goals for">GF</abbr></div>
 			<div class="col-md-1"><abbr title="Goals against">GA</abbr></div>
 			<div class="col-md-1"><abbr title="Points">Pts</abbr></div>
 		</div>
 		<div data-ng-repeat="team in group.teams" class="row team">
 			<div class="col-md-4 countryText pointer" data-ng-click="showTeam(team)"><img data-ng-src="{{team.flag}}" alt="flag" class="flag"/>{{team.country}}</div>
-			<div class="col-md-1">0</div>
-			<div class="col-md-1">0</div>
-			<div class="col-md-1">0</div>
-			<div class="col-md-1">0</div>
-			<div class="col-md-1">0</div>
-			<div class="col-md-1">{{team.points}}</div>
+			<div class="col-md-1">{{team.played || 0}}</div>
+			<div class="col-md-1">{{team.won || 0}}</div>
+			<div class="col-md-1">{{team.lost || 0}}</div>
+			<div class="col-md-1">{{team.draw || 0}}</div>
+			<div class="col-md-1">{{team.goals.for || 0}}</div>
+			<div class="col-md-1">{{team.goals.against || 0}}</div>
+			<div class="col-md-1">{{team.points || 0}}</div>
 		</div>
 	</div>
 </section>
