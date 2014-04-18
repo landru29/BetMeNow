@@ -163,7 +163,7 @@ exports.all = function(req, res) {
           _id: '$level',
           matches: { $push: {
             _id: '$_id',
-            matches: '$$ROOT.matches'
+            matches: '$matches'
           } }
         }
       }, {
