@@ -42,7 +42,7 @@ angular.module('wcb.auth.security.service', [
       queue.retryAll();
     } else {
       queue.cancelAll();
-      redirect();
+      //redirect();
     }
   }
   function openRegisterDialog() {
@@ -90,7 +90,6 @@ angular.module('wcb.auth.security.service', [
     // open page for sign up
     showSignup: function() {
       openRegisterDialog();
-      //redirect('/register');
     },
 
     // Attempt to authenticate a user by the given email and password
@@ -124,7 +123,6 @@ angular.module('wcb.auth.security.service', [
     // Give up trying to login and clear the retry queue
     cancelLogin: function() {
       closeLoginDialog(false);
-      redirect();
     },
 
     // Logout the current user and redirect
