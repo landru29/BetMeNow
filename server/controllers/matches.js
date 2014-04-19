@@ -153,7 +153,7 @@ exports.all = function(req, res) {
               city: '$city',
               teamHome: '$teamHome',
               teamAway: '$teamAway',
-              'score': '$score'
+              score: '$score'
             }
           }
         }
