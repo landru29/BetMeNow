@@ -146,7 +146,7 @@ exports.all = function(req, res) {
           },
           level: {$max: '$level'},
           matches: {
-            $push: /* Version 2.6 => '$$ROOT' */ {
+            $push: /* Version 2.6 => '$$ROOT'  */ {
               level: '$level',
               date: '$date',
               stadium: '$stadium',
