@@ -3,7 +3,7 @@
 // Utilize Lo-Dash utility library
 var _ = require('lodash'),
 	fs = require('fs'),
-  configPath = dirname(__file);
+  configPath = dirname(__filename);
 
 // Load configurations
 // Set the node environment variable if not set before
