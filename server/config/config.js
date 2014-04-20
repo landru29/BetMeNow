@@ -10,7 +10,7 @@ process.env.NODE_ENV = ~fs.readdirSync(process.cwd() + '/server/config/env').map
 	return file.slice(0, -3);
 }).indexOf(process.env.NODE_ENV) ? process.env.NODE_ENV : 'development';
 
-//  Extend the base configuration in all.js with environment
+// Extend the base configuration in all.js with environment
 // specific configuration
 module.exports = _.extend(
 	require('./env/all'),
