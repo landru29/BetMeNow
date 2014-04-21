@@ -59,7 +59,19 @@ Date.prototype.format = function(format) {
         sep = match[2];
       }
     }
-    dateFormatted += sepDate + this.getHours().toString() + sep + this.getMinutes().toString() + sep + this.getSeconds().toString();
+    var hours = this.getHours();
+    if (hours < 10) {
+      hours = '0' + hours.toString();
+    }
+    var minutes = this.getMinutes();
+    if (minutes < 10) {
+      minutes = '0' + minutes.toString();
+    }
+    var seconds = this.getSeconds();
+    if (seconds < 10) {
+      seconds = '0' + seconds.toString();
+    }
+    dateFormatted += sepDate + hours.toString() + sep + minutes.toString() + sep + seconds.toString();
   }
   return dateFormatted;
 };
