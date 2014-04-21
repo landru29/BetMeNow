@@ -1,2 +1,2 @@
-web: ./node_modules/.bin/forever -m 1 server.js
-daemon: ./node_forever/.bin/forever -m 1 ./scripts/fetchResults.js
+web: -m 5 --minUptime 1000 --spinSleepTime 500 ./server.js
+daemon: -m 5 --minUptime 2000 --spinSleepTime 1000 ./scripts/fetchResults.js
