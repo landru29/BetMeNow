@@ -6,9 +6,9 @@
 					<div class="match-list-date anchor" id="{{date._id | date:'yyyyMMdd'}}" ng-repeat="date in level.matchesByDate">
 						<h3><span class="h3-wrap">{{date._id|date:'EEEE dd MMMM'}}</span></h3>
 						<div class="col-xs-12 clear-grid" ng-repeat="match in date.matches">
-							<div id="300186456" class="mu fixture pointer" ng-click="viewMatch(match)">
+							<div id="300186456" class="mu fixture" data-ng-class="{pointer:match.teamA != null}" ng-click="viewMatch(match)">
 								<div class="mu-i">
-									<div class="mu-i-datetime">{{match.date|date:'dd MMM yyyy - HH:mm'}}</div>
+									<!-- <div class="mu-i-datetime">{{match.date|date:'dd MMM yyyy - HH:mm'}}</div> -->
 									<div class="mu-i-group" ng-switch on="match.level">
 										<span ng-switch-when="16">Group {{match.teamA.group}}</span>
 										<span ng-switch-when="8">Round of 16</span>

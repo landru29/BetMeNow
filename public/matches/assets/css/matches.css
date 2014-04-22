@@ -215,37 +215,3 @@
 .flag.selected {
 	border: 2px dotted darkgreen;
 }
-.modal-body .bet-score {
-	position: relative;
-	margin-bottom: 30px;
-}
-.modal-body .home {
-	left:0;
-	position: absolute;
-	padding-left: 15px;
-	text-align: right;
-	width: 50%;
-}
-.modal-body .home input {
-	width: 60px;
-	display: inline-block;
-	margin: 0 0 0 15px;
-}
-.modal-body .away {
-	right:0;
-	position: absolute;
-	padding-right: 15px;
-	text-align: left;
-	width: 50%;
-}
-.modal-body .away input {
-	width: 60px;
-	display: inline-block;
-	margin: 0 15px 0 0;
-}
-.modal-body .separator {
-	margin: 0 10px;
-	font-size: 50px;
-	line-height: 0;
-	vertical-align: sub;
-}

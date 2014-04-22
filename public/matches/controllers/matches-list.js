@@ -26,7 +26,9 @@ angular.module('wcb.matches')
       };
 
       $scope.viewMatch = function(match) {
-        $location.path('/matches/show/' + match._id);
+        if (match.teamA) {
+          $location.path('/matches/show/' + match._id);
+        }
       };
 
     }
