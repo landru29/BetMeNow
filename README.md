@@ -1,6 +1,6 @@
 # World Cup Brazil 2014
 
-The site is accessible on (http://wcb2014.herokuapp.com/).
+The site is accessible on (http://wcb2014.phigrate.org/).
 
 ## Dependencies
 
