@@ -1,5 +1,11 @@
-.pronostic-list {
-
+.pronostic-list .bets .bet {
+  clear: both;
+  border-top: 1px solid #ddd;
+  padding-top: 5px;
+}
+.pronostic-list .bets .bet:first-of-type {
+  border-top:0;
+  padding-top: 0;
 }
 .pronostic-list .container-nav {
   border: 1px solid #ddd;
