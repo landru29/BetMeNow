@@ -25,7 +25,15 @@ var mongoose = require('mongoose'),
     default: 'authenticated'
   }],
   hashed_password: String,
-  salt: String
+  salt: String,
+  points: {
+    type: Number,
+    default: 0
+  },
+  locale: {
+    type: String,
+    default: 'en-gb'
+  }
 });
 
 /**
