@@ -4,6 +4,7 @@
 var path       = require('path'),
     fs         = require('fs'),
     http       = require('http'),
+    emitter    = require('events').EventEmitter,
     htmlparser = require('htmlparser2'),
     _          = require('lodash'),
     rootPath   = path.normalize(__dirname + '/..'),
@@ -25,27 +26,28 @@ var path       = require('path'),
       dryrun: false               // Simulation
     };
 
+require(process.cwd() + '/scripts/updateBets')(emitter);
 
 /**
  * Format the date
  */
 Date.prototype.format = function(format) {
+  var addZero = function(input) {
+    if (input < 10) {
+      input = '0' + input.toString();
+    }
+    return input.toString();
+  };
   var dateFormatted = '', match;
-  var month = this.getMonth() + 1;
-  if (month < 10) {
-    month = '0' + month.toString();
-  }
-  var day = this.getDate();
-  if (day < 10) {
-    day = '0' + day.toString();
-  }
+  var month = addZero(this.getMonth() + 1);
+  var day = addZero(this.getDate());
   var re = /^yyyy(.)?mm.?dd/i;
   if ((match = re.exec(format)) !== null) {
     var sep = '';
     if (match[1]) {
       sep = match[1];
     }
-    dateFormatted = this.getFullYear().toString() + sep + month.toString() + sep + day.toString();
+    dateFormatted = this.getFullYear().toString() + sep + month + sep + day;
   }
   re = /(.)hh(.)?mm.?ss$/i;
   if ((match = re.exec(format)) !== null) {
@@ -59,19 +61,10 @@ Date.prototype.format = function(format) {
         sep = match[2];
       }
     }
-    var hours = this.getHours();
-    if (hours < 10) {
-      hours = '0' + hours.toString();
-    }
-    var minutes = this.getMinutes();
-    if (minutes < 10) {
-      minutes = '0' + minutes.toString();
-    }
-    var seconds = this.getSeconds();
-    if (seconds < 10) {
-      seconds = '0' + seconds.toString();
-    }
-    dateFormatted += sepDate + hours.toString() + sep + minutes.toString() + sep + seconds.toString();
+    var hours = addZero(this.getHours());
+    var minutes = addZero(this.getMinutes());
+    var seconds = addZero(this.getSeconds());
+    dateFormatted += sepDate + hours + sep + minutes + sep + seconds;
   }
   return dateFormatted;
 };
@@ -779,6 +772,8 @@ var saveMatchScore = function(err, score, match) {
         logger('The match ('+newMatch.teamHome.team.country+' / '+newMatch.teamAway.team.country+') score is saved');
         if (nbUpdated === 1) {
           nbMatchesUpdated++;
+          // Emit an event for update bets
+          emitter.emit('save', newMatch);
           // Mettre à jour le vainqueur à sa nouvelle place
           logger(nbUpdated + ' match saved');
           updateTeams(newMatch, function(err, theMatch, firstTeam, secondTeam) {
