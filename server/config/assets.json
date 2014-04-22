@@ -17,10 +17,12 @@
 			"public/init.js",
 			"public/auth/auth.js",
 			"public/system/system.js",
+			"public/bets/bets.js",
 			"public/matches/matches.js",
 			"public/teams/teams.js",
 			"public/auth/*/*.js",
 			"public/system/*/*.js",
+			"public/bets/*/*.js",
 			"public/matches/*/*.js",
 			"public/teams/*/*.js"
 		]

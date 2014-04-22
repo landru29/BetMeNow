@@ -33,7 +33,7 @@ angular.module('wcb.system').controller('HeaderCtrl', [
 				show: true
 			}, {
 				title: localizedMessages.get('menu.title.pronostics.list'),
-				link: '/bets/me',
+				link: '/bets',
 				show: security.isAuthenticated()
 			}
 		];

@@ -1,0 +1,26 @@
+.modal-body .row {
+  text-align: center;
+  vertical-align: middle;
+}
+.modal-body .score {
+  margin-top: 15px;
+}
+.modal-body input[type="number"] {
+  width: 60px;
+  display: inline-block;
+}
+.modal-body label {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+.modal-body input[type="checkbox"] {
+  display: block;
+  height: 30px;
+  margin: 0 auto;
+  width: 100%;
+}
+.modal-body .separator {
+  font-size: 50px;
+  line-height: 0;
+  vertical-align: middle;
+}

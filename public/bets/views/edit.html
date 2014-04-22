@@ -1,0 +1,47 @@
+<form name="form" novalidate class="bet-form">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" data-ng-click="cancelBet()">×</button>
+        <h4>{{title}}</h4>
+    </div>
+    <div class="modal-body">
+        <div class="alert alert-warning" ng-show="error">
+            {{error}}
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <img ng-src="{{match.teamHome.team.flag}}" ng-click="setWinner(match.teamHome._id)" alt="{{match.teamHome.team.country}}" title="{{match.teamHome.team.country}}" class="i-4-flag flag" data-ng-class="{selected:bet.winner==match.teamHome._id}"/>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <span class="separator" data-ng-if="match.level < 16">-</span>
+                    <div data-ng-if="match.level >= 16">
+                        <label for="draw">Draw</label>
+                        <input id="draw" type="checkbox" name="draw" class="" ng-model="bet.draw" data-ng-click="bet.winner=null"/>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <img ng-src="{{match.teamAway.team.flag}}" ng-click="setWinner(match.teamAway._id)" alt="{{match.teamAway.team.country}}" title="{{match.teamAway.team.country}}" class="i-4-flag flag" data-ng-class="{selected:bet.winner==match.teamAway._id}"/>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 score">
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <input type="number" name="score.home" class="form-control" ng-model="bet.score.home"/>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <span class="separator">-</span>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <input type="number" name="score.away" class="form-control" ng-model="bet.score.away"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="form-group">
+            <div class="col-md-offset-4 col-md-8">
+                <button type="submit" class="btn btn-primary" data-ng-click="saveBet()" ng-disabled="form.$invalid">Submit</button>
+                <button class="btn btn-warning cancel" ng-click="cancelBet()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</form>

@@ -15,10 +15,20 @@ var BetSchema = new Schema({
     type: Date,
     default: Date.now
   },
+  status: {
+    // 0: match not played, 1: match played but pronostic incorrect, 2: match played and pronostic OK
+    type: Number,
+    default: 0
+  },
   winner: {
     type: String,
     ref: 'RTM',
-    index: true
+    index: true,
+    null: true
+  },
+  draw: {
+    type: Boolean,
+    default: false
   },
   score: {
     away: { type: Number, null: true },

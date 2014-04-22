@@ -56,7 +56,7 @@ exports.create = function(req, res) {
       }
       bet = new Bet(req.body);
       bet.user = req.user;
-      
+
       bet.save(function(err) {
         if (err) {
           res.json(412, err);
@@ -75,11 +75,11 @@ exports.update = function(req, res) {
   var bet = req.bet;
 
   // Check that the bet belongs to user
-  if (req.param('bet.user') && 
+  if (req.param('bet.user') &&
     // The user param is different of the user authenticated
     (req.param('bet.user') !== req.user._id.toString() ||
     // The user param is different of the bet's user
-    (req.param('bet.user') !== bet.user._id.toString())) && 
+    (req.param('bet.user') !== bet.user._id.toString())) &&
     !req.user.hasRole('admin'))
   {
     return res.json(412, {message: 'You can update only your bets ;-)'});
@@ -104,7 +104,7 @@ exports.update = function(req, res) {
  */
 exports.destroy = function(req, res) {
   var bet = req.bet;
-  
+
   if (req.user._id !== bet.user._id && !req.user.hasRole('admin')) {
     return res.json(412, {message: 'You can remove only your bets ;-)'});
   }
@@ -151,8 +151,46 @@ exports.all = function(req, res) {
       var opts = [
         { path: 'winner.team', select: 'country flag points group', model: 'Team'}
       ];
-      Bet.populate(bets, opts, function(data) {
+      Bet.populate(bets, opts, function(err, data) {
+        if (err) {
+          return res.json(500, err);
+        }
         res.jsonp(data);
+      });
+    });
+};
+
+exports.myBets = function(req, res) {
+  var criteria = {user: req.user._id};
+  if (req.param('match')) {
+    criteria.match = req.param('match');
+  }
+  Bet.find(criteria)
+    .sort('-created')
+    .populate('match')
+    .exec(function(err, bets) {
+      if (err) {
+        return res.json(500, err);
+      }
+      var opts = [
+        { path: 'winner.team', select: 'country flag group', model: 'Team'},
+        { path: 'match.teamAway', select: 'team', model: 'RTM'},
+        { path: 'match.teamHome', select: 'team', model: 'RTM'}
+      ];
+      Bet.populate(bets, opts, function(err, data) {
+        if (err) {
+          return res.json(500, err);
+        }
+        var opts = [
+          { path: 'match.teamAway.team', select: 'country flag group', model: 'Team'},
+          { path: 'match.teamHome.team', select: 'country flag group', model: 'Team'}
+        ];
+        Bet.populate(data, opts, function(err, newData) {
+          if (err) {
+            return res.json(500, err);
+          }
+          res.json(data);
+        });
       });
     });
 };

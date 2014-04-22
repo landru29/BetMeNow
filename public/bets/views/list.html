@@ -1,0 +1,128 @@
+<!-- list.html -->
+<section class="col-xs-12 pronostic-list">
+  <h1 class="">Your pronostics</h1>
+  <div class="container-nav">
+    <ul class="nav nav-pills">
+      <li data-ng-class="{active:forthcoming}"><a data-ng-click="forthcoming=!forthcoming;elapsed=false" href="#">Forthcoming</a></li>
+      <li data-ng-class="{active:elapsed}"><a data-ng-click="elapsed=!elapsed;forthcoming=false" href="#">Elapsed</a></li>
+    </ul>
+  </div>
+  <div ng-show="forthcoming" class="mh mu bets">
+    <div class="mh-i" data-ng-if="bets.forthcoming.length <= 0">
+      <div class="mh-i-location-date">
+        <span>No pronostics found</span>
+      </div>
+    </div>
+    <div data-ng-repeat="bet in bets.forthcoming">
+      <div class="mh-i">
+        <div class="mh-i-location-date">
+          <div class="mh-i-datetime">Created at: {{bet.created|date:'dd MMM yyyy - HH:mm'}}</div>
+        </div>
+      </div>
+      <div class="mu-i">
+        <div class="mu-i-datetime">{{bet.match.date|date:'dd MMM yyyy - HH:mm'}}</div>
+        <div class="mu-i-group" ng-switch on="bet.match.level">
+          <span ng-switch-when="16">Group {{bet.match.teamHome.team.group}}</span>
+          <span ng-switch-when="8">Round of 16</span>
+          <span ng-switch-when="4">Quarter-Finals</span>
+          <span ng-switch-when="2">Semi-Finals</span>
+          <span ng-switch-when="1">Play-Off For Third Place</span>
+          <span ng-switch-when="0">Final</span>
+        </div>
+        <div class="mu-i-location">
+          <div class="mu-i-stadium">{{bet.match.stadium}}</div>
+          <div class="mu-i-venue">{{bet.match.city}}</div>
+        </div>
+      </div>
+      <div class="mu-m pointer" data-ng-click="editPronostic(bet)" title="Edit this pronostic">
+        <div class="t home">
+          <div class="t-i i-4">
+            <span class="t-i-wrap">
+              <img ng-src="{{bet.match.teamHome.team.flag}}" alt="{{bet.match.teamHome.team.country}}" class="i-4-flag flag"/>
+            </span>
+          </div>
+          <div class="t-n">
+            <span class="t-nText">{{bet.match.teamHome.team.country}}</span>
+            <span class="t-nTri"></span>
+          </div>
+        </div>
+        <div class="t away">
+          <div class="t-i i-4">
+            <span class="t-i-wrap">
+              <img ng-src="{{bet.match.teamAway.team.flag}}" alt="{{bet.match.teamAway.team.country}}" class="i-4-flag flag"/>
+            </span>
+          </div>
+          <div class="t-n">
+            <span class="t-nText">{{bet.match.teamAway.team.country}}</span>
+            <span class="t-nTri"></span>
+          </div>
+        </div>
+        <div class="s">
+          <div class="s-status"></div>
+          <div class="s-score s-date-HHmm">
+            <span class="s-scoreText">{{bet.score.home}} - {{bet.score.away}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div ng-show="elapsed" class="mh mu bets">
+    <div class="mh-i" data-ng-if="bets.elapsed.length <= 0">
+      <div class="mh-i-location-date">
+        <span>No pronostics found</span>
+      </div>
+    </div>
+    <div data-ng-repeat="bet in bets.elapsed">
+      <div class="mh-i">
+        <div class="mh-i-location-date">
+          <div class="mh-i-datetime">Created at: {{bet.created|date:'dd MMM yyyy - HH:mm'}}</div>
+        </div>
+      </div>
+      <div class="mu-i">
+        <div class="mu-i-datetime">{{bet.match.date|date:'dd MMM yyyy - HH:mm'}}</div>
+        <div class="mu-i-group" ng-switch on="bet.match.level">
+          <span ng-switch-when="16">Group {{bet.match.teamHome.team.group}}</span>
+          <span ng-switch-when="8">Round of 16</span>
+          <span ng-switch-when="4">Quarter-Finals</span>
+          <span ng-switch-when="2">Semi-Finals</span>
+          <span ng-switch-when="1">Play-Off For Third Place</span>
+          <span ng-switch-when="0">Final</span>
+        </div>
+        <div class="mu-i-location">
+          <div class="mu-i-stadium">{{bet.match.stadium}}</div>
+          <div class="mu-i-venue">{{bet.match.city}}</div>
+        </div>
+      </div>
+      <div class="mu-m">
+        <div class="t home">
+          <div class="t-i i-4">
+            <span class="t-i-wrap">
+              <img ng-src="{{bet.match.teamHome.team.flag}}" alt="{{bet.match.teamHome.team.country}}" class="i-4-flag flag"/>
+            </span>
+          </div>
+          <div class="t-n">
+            <span class="t-nText">{{bet.match.teamHome.team.country}}</span>
+            <span class="t-nTri"></span>
+          </div>
+        </div>
+        <div class="t away">
+          <div class="t-i i-4">
+            <span class="t-i-wrap">
+              <img ng-src="{{bet.match.teamAway.team.flag}}" alt="{{bet.match.teamAway.team.country}}" class="i-4-flag flag"/>
+            </span>
+          </div>
+          <div class="t-n">
+            <span class="t-nText">{{bet.match.teamAway.team.country}}</span>
+            <span class="t-nTri"></span>
+          </div>
+        </div>
+        <div class="s">
+          <div class="s-status"></div>
+          <div class="s-score s-date-HHmm">
+            <span class="s-scoreText">{{bet.score.home}} - {{bet.score.away}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
