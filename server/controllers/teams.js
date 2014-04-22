@@ -135,18 +135,7 @@ exports.all = function(req, res) {
         $group: {
           _id: '$group',
           teams: {
-            $push: /* Version: 2.6 => '$$ROOT' */ {
-              _id: '$_id',
-              country: '$country',
-              group: '$group',
-              flag: '$flag',
-              points: '$points',
-              played: '$played',
-              won: '$won',
-              lost: '$lost',
-              draw: '$draw',
-              'goals': '$goals'
-            }
+            $push: '$$ROOT'
           }
         }
       })

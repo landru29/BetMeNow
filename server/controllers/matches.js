@@ -146,15 +146,7 @@ exports.all = function(req, res) {
           },
           level: {$max: '$level'},
           matches: {
-            $push: /* Version 2.6 => '$$ROOT' */ {
-              level: '$level',
-              date: '$date',
-              stadium: '$stadium',
-              city: '$city',
-              teamHome: '$teamHome',
-              teamAway: '$teamAway',
-              score: '$score'
-            }
+            $push: '$$ROOT'
           }
         }
       },
