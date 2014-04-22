@@ -9,8 +9,10 @@ angular.module('wcb.auth.security.service', [
 
   // Redirect to the given url (defaults to '/')
   function redirect(url) {
-    url = url || '/';
-    $location.path(url);
+    window.location.reload();
+    if (null !== url) {
+      $location.path(url);
+    }
   }
 
   // Login form dialog stuff
@@ -100,6 +102,7 @@ angular.module('wcb.auth.security.service', [
         if ( service.isAuthenticated()) {
           closeLoginDialog(true);
         }
+        redirect();
         return service.isAuthenticated();
       });
     },
