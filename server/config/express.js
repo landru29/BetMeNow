@@ -104,8 +104,16 @@ module.exports = function(app, passport, db) {
         if (!req.session.locale) {
           req.session.locale = config.app.locale;
         }
-        console.log('locale session: '+req.session.locale, 'locale config: '+config.app.locale);
         res.locals({locale: req.session.locale});
+
+        if (process.env.NODE_ENV === 'production') {
+          if (!req.session.version) {
+            req.session.version = require(process.cwd() + '/package.json').version;
+          }
+          res.locals({version: req.session.version});
+        } else {
+          res.locals.version = new Date().getTime();
+        }
         next();
       });
 

@@ -8,10 +8,10 @@
     <meta name="keywords" content="node.js, express, mongoose, mongodb, angularjs, swig">
     <meta name="description" content="WCB - World Cup Brazil 2014: An application to pronostic matches.">
 
-    <link href="/public/auth/assets/img/icons/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <link href="/public/auth/assets/img/icons/favicon.ico?v={{version}}" rel="shortcut icon" type="image/x-icon">
 
     {% for file in assets.css %}
-        <link rel="stylesheet" href="/public/{{file}}"/>
+        <link rel="stylesheet" href="/public/{{file}}?v={{version}}"/>
     {% endfor %}
 
 <!--[if lt IE 9]>

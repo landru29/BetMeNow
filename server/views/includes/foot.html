@@ -5,10 +5,10 @@
         window.locale = "{{locale|safe}}";
     </script>
 {% for file in assets.js %}
-	<script type="text/javascript" src="/public/{{file}}"></script>
+	<script type="text/javascript" src="/public/{{file}}?v={{version}}"></script>
 {% endfor %}
-  <script type="text/javascript" src="/public/vendor/angular-i18n/angular-locale_{{locale}}.js"></script>
-  <script type="text/javascript" src="/public/wcb-i18n/wcb-locale_{{locale}}.js"></script>
+  <script type="text/javascript" src="/public/vendor/angular-i18n/angular-locale_{{locale}}.js?v={{version}}"></script>
+  <script type="text/javascript" src="/public/wcb-i18n/wcb-locale_{{locale}}.js?v={{version}}"></script>
 </div>
 
 {% if (process.env.NODE_ENV == 'development') %}
