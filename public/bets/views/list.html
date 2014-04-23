@@ -2,6 +2,12 @@
 <section class="col-xs-12 pronostic-list">
   <h1 class="">Your pronostics</h1>
   <div class="container-nav">
+    <ul class="pull-right">
+      <li>Nb total: {{totalBets}}</li>
+      <li>Nb won: {{betsWon}}</li>
+      <li>Avg won: {{betsAvgWon}}%</li>
+      <li>Nb score won: {{betsWonScore}}</li>
+    </ul>
     <ul class="nav nav-pills">
       <li data-ng-class="{active:forthcoming}"><a data-ng-click="forthcoming=!forthcoming;elapsed=false" href="#">Forthcoming</a></li>
       <li data-ng-class="{active:elapsed}"><a data-ng-click="elapsed=!elapsed;forthcoming=false" href="#">Elapsed</a></li>

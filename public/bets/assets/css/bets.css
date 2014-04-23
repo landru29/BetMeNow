@@ -11,7 +11,10 @@
   border: 1px solid #ddd;
   border-radius: 4px 4px 0 0;
   box-shadow: none;
-  padding: 45px 15px 15px;
+  padding: 10px 15px 15px;
+}
+.pronostic-list .container-nav .nav-pills {
+  padding-top: 45px;
 }
 .pronostic-list .bets {
   border: 1px solid #e1e1e8;
