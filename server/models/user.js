@@ -11,6 +11,10 @@ var mongoose = require('mongoose'),
  * User Schema
  */
  var UserSchema = new Schema({
+  created: {
+    type: Date,
+    default: Date.now
+  },
   name: {
     type: String,
     required: true

@@ -6,6 +6,7 @@ var users = require('../controllers/users');
 module.exports = function(app, passport) {
 
     app.get('/logout', users.signout);
+    app.get('/api/users', users.all);
     app.get('/api/users/:userId', users.me);
     app.get('/api/users/:userId/bets', users.bets);
 
@@ -24,7 +25,7 @@ module.exports = function(app, passport) {
     app.post('/login', passport.authenticate('local', {
         failureFlash: true
     }), function (req,res) {
+        req.session.locale = req.user.locale;
         res.send({user: {name: req.user.name, roles: req.user.roles}});
-        
     });
 };

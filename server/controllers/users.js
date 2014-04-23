@@ -121,3 +121,19 @@ exports.bets = function(req, res) {
       });
     });
 };
+
+exports.all = function(req, res) {
+  var criteria = req.param('query') ? JSON.parse(req.param('query')) : {};
+  var sort = req.param('sort') ? req.param('sort') : 'date';
+  var limit = req.param('limit') ? parseInt(req.param('limit'), 10) : null;
+  var query = User.find(criteria, 'created username').sort(sort);
+  if (limit) {
+    query.limit(limit);
+  }
+  query.exec(function(err, users) {
+    if (err) {
+      return res.json(500, {message: err});
+    }
+    res.json(200, users);
+  });
+};

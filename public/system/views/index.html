@@ -1,3 +1,44 @@
-<section data-ng-controller="HomeCtrl">
+<section>
 	<h1>{{messages['page.index.welcome']}}</h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h4 style="background-color: #222222;border-color: #080808;color: #999999;">Next matches</h4>
+        <div class="row" style="text-align:center;font-weight:bold;">
+          <div class="col-md-2">Date</div>
+          <div class="col-md-1">Hour</div>
+          <div class="col-md-4">Teams</div>
+          <div class="col-md-1">Bets</div>
+        </div>
+        <div class="row pointer" data-ng-repeat="match in matches">
+          <div class="col-md-2">{{match.date|date}}</div>
+          <div class="col-md-1">{{match.date|date: "HH:mm"}}</div>
+          <div data-ng-click="showMatch(match)" title="show match" class="col-md-4">{{match.teamHome.team.country}} - {{match.teamAway.team.country}}</div>
+          <div class="col-md-1">{{betsOfLastMatches[match._id] || 0}}</div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h4 style="background-color: #222222;border-color: #080808;color: #999999;">Last users</h4>
+        <div class="row" data-ng-repeat="user in users">
+          <div class="col-md-2">{{user.created|date}}</div>
+          <div class="col-md-4">{{user.username}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <h4 style="background-color: #222222;border-color: #080808;color: #999999;">Last pronostics</h4>
+        <div class="row" style="text-align:center;font-weight:bold;">
+          <div class="col-md-3">Created at</div>
+          <div class="col-md-3">User</div>
+          <div class="col-md-4">Winner</div>
+        </div>
+        <div class="row" data-ng-repeat="bet in bets">
+          <div class="col-md-3">{{bet.created|date}}</div>
+          <div class="col-md-3">{{bet.user.username}}</div>
+          <div class="col-md-4">{{bet.winner.team.country}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>

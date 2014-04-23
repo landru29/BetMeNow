@@ -135,16 +135,24 @@ exports.show = function(req, res) {
  * List of bets
  */
 exports.all = function(req, res) {
-  var criteria = {};
+  var criteria = req.param('query') ? JSON.parse(req.param('query')) : {};
   if (req.param('match')) {
     criteria.match = req.param('match');
   }
   if (req.param('user')) {
     criteria.user = req.param('user');
   }
-  Bet.find()
-    .sort('-created')
-    .exec(function(err, bets) {
+  var sort = req.param('sort') ? req.param('sort') : '-created';
+  var limit = req.param('limit') ? parseInt(req.param('limit'), 10) : null;
+  var query = Bet.find(criteria)
+    .populate('match')
+    .populate('winner')
+    .populate('user', 'username')
+    .sort(sort);
+  if (limit) {
+    query.limit(limit);
+  }
+  query.exec(function(err, bets) {
       if (err) {
         return res.json(500, err);
       }

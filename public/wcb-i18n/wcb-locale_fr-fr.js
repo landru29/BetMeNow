@@ -2,6 +2,7 @@
 
 angular.module("wcb.i18n", [], ["$provide", function($provide) {
   $provide.constant("I18N.MESSAGES", {
+    'error.global': 'Erreur: {{message}}',
     'errors.route.changeError':'Erreur lors du changement de route',
     'crud.user.save.success':"L'utilisateur avec l'ID '{{id}}' a été sauvé avec succès.",
     'crud.user.remove.success':"L'utilisateur avec l'ID '{{id}}' a été supprimé avec succès.",

@@ -167,65 +167,86 @@ exports.all = function(req, res) {
       })
 			.sort('-level');
 	} else {
-		query = Match.find({})
+    var criteria = req.param('query') ? JSON.parse(req.param('query')) : {};
+    var sort = req.param('sort') ? req.param('sort') : 'date';
+    var limit = req.param('limit') ? parseInt(req.param('limit'), 10) : null;
+		query = Match.find(criteria)
 			.populate('teamHome', 'team')
 			.populate('teamAway', 'team')
-			.sort('date');
+			.sort(sort);
+      if (limit) {
+        query.limit(limit);
+      }
 	}
 	query.exec(function(err, levels) {
 		if (err) {
-			res.json(500, {message: err});
-		} else {
-			if (levels.length > 0 && levels[0].hasOwnProperty('matchesByDate')) {
-        // return res.json(levels);
-				// populate teams
-				Team.find({}, function(err, teams) {
-					if (err) {
-						res.json(500, {message: err});
-					} else {
-						RTM.find({}, function(err, rtms) {
-              if (err) {
-								return res.json(500, {message: err});
-							}
-							var getTeam = function(rtmId) {
-								for (var r=0; r<rtms.length; ++r) {
-									if (rtmId === rtms[r]._id && rtms[r].team) {
-										for (var i=0; i<teams.length; ++i) {
-											if (teams[i]._id.toString() === rtms[r].team.toString()) {
-												return teams[i];
-											}
-										}
+      console.log(err);
+			return res.json(500, {message: err});
+		}
+		if (levels.length > 0 && levels[0].hasOwnProperty('matchesByDate')) {
+      // return res.json(levels);
+			// populate teams
+			Team.find({}, function(err, teams) {
+				if (err) {
+          console.log(err);
+					return res.json(500, {message: err});
+				}
+				RTM.find({}, function(err, rtms) {
+          if (err) {
+            console.log(err);
+						return res.json(500, {message: err});
+					}
+					var getTeam = function(rtmId) {
+						for (var r=0; r<rtms.length; ++r) {
+							if (rtmId === rtms[r]._id && rtms[r].team) {
+								for (var i=0; i<teams.length; ++i) {
+									if (teams[i]._id.toString() === rtms[r].team.toString()) {
+										return teams[i];
 									}
 								}
-								return null;
-							};
-							var group, level;
-							for (var l=0; l < levels.length; ++l) {
-                for (var i = 0; i < levels[l].matchesByDate.length; i++) {
-								  group = levels[l].matchesByDate[i];
-                  group._id = new Date(group._id.year, group._id.month - 1, group._id.day);
-  								for (var j=0; j < group.matches.length; ++j) {
-  									// Find teams
-  									var teamHomeId = group.matches[j].teamHome;
-  									var teamAwayId = group.matches[j].teamAway;
-  									group.matches[j].teamA = getTeam(teamHomeId);
-  									group.matches[j].teamB = getTeam(teamAwayId);
-  								}
-                }
-                levels[l].matchesByDate.sort(function(a, b) {
-                  return (a._id === b._id) ? 0 : (a._id < b._id) ? -1 : 1;
-                });
 							}
-							res.jsonp(levels);
-
-						});
+						}
+						return null;
+					};
+					for (var l=0; l < levels.length; ++l) {
+            for (var i = 0; i < levels[l].matchesByDate.length; i++) {
+						  levels[l].matchesByDate[i] = populateMatch(levels[l].matchesByDate[i], getTeam);
+            }
+            levels[l].matchesByDate.sort(sortMatchesDate);
 					}
+					res.jsonp(levels);
 				});
-			} else {
-				res.jsonp(levels);
-			}
+			});
+		} else {
+      var opts = [
+        { path: 'teamHome.team', select: 'country flag points group', model: 'Team'},
+        { path: 'teamAway.team', select: 'country flag points group', model: 'Team'}
+      ];
+      Match.populate(levels, opts, function(err, data) {
+        if (err) {
+          console.log(err);
+          return res.json(500, {message: err});
+        }
+        res.jsonp(data);
+      });
 		}
 	});
+};
+
+var sortMatchesDate = function(a, b) {
+  return (a._id === b._id) ? 0 : (a._id < b._id) ? -1 : 1;
+};
+
+var populateMatch = function(group, getTeam) {
+  group._id = new Date(group._id.year, group._id.month - 1, group._id.day);
+  for (var m = 0; m < group.matches.length; ++m) {
+    // Find teams
+    var teamHomeId = group.matches[m].teamHome;
+    var teamAwayId = group.matches[m].teamAway;
+    group.matches[m].teamA = getTeam(teamHomeId);
+    group.matches[m].teamB = getTeam(teamAwayId);
+  }
+  return group;
 };
 
 /**
