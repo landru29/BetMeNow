@@ -4,6 +4,28 @@ body {
   line-height: 1.54;
   color: #666666;
 }
+.navbar-inverse {
+  background-color: #326195;
+}
+.navbar-inverse .navbar-brand:hover {
+  color: #e349a1;
+}
+.navbar-inverse .navbar-nav > li > a {
+  color: #c0cbd9;
+  background-color: #326195;
+}
+.navbar-inverse .navbar-nav > .open > a:hover,
+.navbar-inverse .navbar-nav > .open > a:focus,
+.navbar-inverse .navbar-nav > .active > a:hover,
+.navbar-inverse .navbar-nav > .active > a:focus {
+  color: #76bf56;
+  background-color: #326195;
+}
+.navbar-inverse .navbar-nav > .open > a,
+.navbar-inverse .navbar-nav > .active > a {
+  color: #c0cbd9;
+  background-color: #326195;
+}
 .page-header {
   padding-bottom: 0;
   margin: 0;
