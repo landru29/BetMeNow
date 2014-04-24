@@ -70,6 +70,7 @@ footer p {
   .content {margin-top: 70px;}
 }
 @media (max-width: 991px) {
+  .flag {width: 33px;}
   .viewport {
     overflow: hidden;
     width: 100%;

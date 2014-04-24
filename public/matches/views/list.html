@@ -36,6 +36,7 @@
 											<span ng-if="match.teamA" class="t-nText">{{match.teamA.country}}</span>
 											<span ng-if="!match.teamA" class="t-nText">[{{match.teamHome}}]</span>
 											<span ng-if="match.teamA" class="t-nTri">{{match.teamA.shortcountry}}</span>
+											<span ng-if="!match.teamA" class="t-nTri">[{{match.teamHome}}]</span>
 										</div>
 									</div>
 									<div class="t away">
@@ -49,6 +50,7 @@
 											<span ng-if="match.teamB" class="t-nText">{{match.teamB.country}}</span>
 											<span ng-if="!match.teamB" class="t-nText">[{{match.teamAway}}]</span>
 											<span ng-if="match.teamB" class="t-nTri">{{match.teamB.shortcountry}}</span>
+											<span ng-if="!match.teamB" class="t-nTri">[{{match.teamAway}}]</span>
 										</div>
 									</div>
 									<div class="s">

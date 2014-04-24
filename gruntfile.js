@@ -58,6 +58,11 @@ module.exports = function(grunt) {
                 files: '<%= assets.css %>'
             }
         },
+        copy: {
+            assets: {
+                files: [{ dest: 'build/fonts/', src : '**', expand: true, cwd: 'public/vendor/bootstrap/dist/fonts' }]
+            }
+        },
         nodemon: {
             dev: {
                 script: 'server.js',
@@ -107,7 +112,7 @@ module.exports = function(grunt) {
 
     //Default task(s).
     if (process.env.NODE_ENV === 'production') {
-        grunt.registerTask('default', ['jshint', 'csslint', 'cssmin', 'uglify']);
+        grunt.registerTask('default', ['jshint', 'csslint', 'cssmin', 'copy', 'uglify']);
     } else {
         grunt.registerTask('default', ['jshint', 'csslint', 'concurrent']);
     }

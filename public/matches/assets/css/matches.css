@@ -124,8 +124,6 @@
 .col-xs-12 {
   position: relative;
   min-height: 1px;
-  padding-left: 10px;
-  padding-right: 10px;
   float: inherit;
 }
 .col-xs-12 .mu .mu-i div {
@@ -147,15 +145,7 @@
   color: #474747;
   text-transform: uppercase;
 }
-.col-xs-12 .t .t-i + .t-n,
-.col-xs-12 .t.home .t-i + .t-n {
-  margin-left: 63px;
-}
-.col-xs-12 .t.away .t-i + .t-n {
-  margin-right: 63px;
-  margin-left: 0;
-}
-.col-xs-12 .t-i .t-i-wrap .flag {
+.flag {
   width: 48px;
 }
 .col-xs-12 .s {
@@ -163,13 +153,7 @@
 }
 .col-xs-12 .s .s-status {
   font-size: 11px;
-  line-height: 26px;
   text-transform: uppercase;
-  min-height: 26px;
-}
-.col-xs-12 .s .s-score.s-date-HHmm {
-  font-size: 27px;
-  line-height: 26px;
 }
 .pronostics {
   width: 100%;
@@ -227,6 +211,10 @@
     height: 50px;
     display: table-cell;
   }
+  .col-xs-12 {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
   .col-xs-12 .mu .mu-i {
     width: 232px;
     margin-right: 20px;
@@ -237,6 +225,22 @@
   }
   .col-xs-12 .mu .mu-m {
     margin-left: 272px;
+  }
+  .col-xs-12 .t .t-i + .t-n,
+  .col-xs-12 .t.home .t-i + .t-n {
+    margin-left: 63px;
+  }
+  .col-xs-12 .t.away .t-i + .t-n {
+    margin-right: 63px;
+    margin-left: 0;
+  }
+  .col-xs-12 .s .s-score.s-date-HHmm {
+    font-size: 27px;
+    line-height: 26px;
+  }
+  .col-xs-12 .s .s-status {
+    line-height: 26px;
+    min-height: 26px;
   }
 
 }

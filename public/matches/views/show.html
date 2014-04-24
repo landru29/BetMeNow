@@ -43,7 +43,7 @@
 					<div class="s-status"><span data-ng-if="match.score.away">Fin</span></div>
 					<div class="s-score s-date-HHmm">
 						<span data-ng-if="!match.score.away" class="s-scoreText">{{match.date|date:'HH:mm'}}</span>
-						<span data-ng-if="match.score.away" class="s-scoreText">{{match.score}}</span>
+						<span data-ng-if="match.score.away" class="s-scoreText">{{match.score.home}} - {{match.score.away}}</span>
 					</div>
 				</div>
 				<div class="mu-reasonwin">

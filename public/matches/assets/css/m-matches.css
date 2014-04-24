@@ -22,6 +22,9 @@
     top: 0;
     bottom: 0;
   }
+  .col-xs-12 {
+    padding: 0;
+  }
   .col-xs-12 .mu {
     padding: 0 10px;
   }
@@ -87,6 +90,30 @@
   .col-xs-12 .mu .t .t-nTri,
   .col-xs-12 .mu .t .t-i-wrap {
     height: 60px;
+  }
+  .col-xs-12 .t-n .t-nTri {
+    height: 40px;
+    font-size: 19px;
+    line-height: 24px;
+  }
+  .col-xs-12 .s .s-score {
+    font-size: 18px;
+    line-height: 21px;
+    text-align: center;
+  }
+  .col-xs-12 .s .s-status {
+    line-height: 11px;
+    height: 11px;
+    text-align: center;
+    margin: 4px 0;
+  }
+  .col-xs-12 .t .t-i + .t-n,
+  .col-xs-12 .t.home .t-i + .t-n {
+    margin-left: 38px;
+  }
+  .col-xs-12 .t.away .t-i + .t-n {
+    margin-right: 38px;
+    margin-left: 0;
   }
   .t .t-n .t-nText,
   .t .t-i .t-nText {
