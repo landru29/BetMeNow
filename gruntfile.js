@@ -60,7 +60,7 @@ module.exports = function(grunt) {
         },
         copy: {
             assets: {
-                files: [{ dest: 'build/fonts/', src : '**', expand: true, cwd: 'public/vendor/bootstrap/dist/fonts' }]
+                files: [{ dest: 'public/build/fonts/', src : '**', expand: true, cwd: 'public/vendor/bootstrap/dist/fonts' }]
             }
         },
         nodemon: {
