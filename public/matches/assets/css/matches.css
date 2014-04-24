@@ -201,8 +201,7 @@
   .col-xs-12 .mu .mu-i .mu-i-date,
   .col-xs-12 .mu .mu-i .mu-i-matchnum,
   .col-xs-12 .mu .mu-i .mu-i-round,
-  .col-xs-12 .mu .mu-m .mu-reasonwin-abbr,
-  .col-xs-12 .mu .t .t-i-wrap
+  .col-xs-12 .mu .mu-m .mu-reasonwin-abbr
   {
     display: none !important;
     visibility: hidden !important;
