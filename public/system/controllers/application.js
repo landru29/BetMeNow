@@ -13,6 +13,7 @@ angular.module('wcb.system')
         messages[key] = localizedMessages.get(key);
       });
       $rootScope.messages = messages;
+      $rootScope.width = angular.element(document).width();
 
       $scope.removeNotification = function (notification) {
         i18nNotifications.remove(notification);

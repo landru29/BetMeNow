@@ -9,6 +9,7 @@
 							<div id="300186456" class="mu fixture" data-ng-class="{pointer:match.teamA != null}" ng-click="viewMatch(match)">
 								<div class="mu-i">
 									<!-- <div class="mu-i-datetime">{{match.date|date:'dd MMM yyyy - HH:mm'}}</div> -->
+									<div class="mu-i-date">{{match.date|date:'dd MMM yyyy'}}</div>
 									<div class="mu-i-group" ng-switch on="match.level">
 										<span ng-switch-when="16">Group {{match.teamA.group}}</span>
 										<span ng-switch-when="8">Round of 16</span>
@@ -22,17 +23,19 @@
 										<div class="mu-i-venue">{{match.city}}</div>
 									</div>
 								</div>
+								<div class="mu-day"><span class="t-day">{{date._id|date:'dd'}}</span><span class="t-month">{{date._id|date:'MMM'}}</span></div>
 								<div class="mu-m">
 									<div class="t home">
 										<div class="t-i i-4">
 											<span class="t-i-wrap">
-												<img ng-if="match.teamA" ng-src="{{match.teamA.flag}}" alt="{{match.teamA.country}}" class="BRA i-4-flag flag"/>
+												<img ng-if="match.teamA" ng-src="{{match.teamA.flag}}" alt="{{match.teamA.country}}" class="i-4-flag flag"/>
 												<img ng-if="!match.teamA" src="http://img.fifa.com/imgml/layout/backgrounds/void.gif" alt="{{match.teamHome}}" class=" i-4-flag flag fake ng-hide"/>
 											</span>
 										</div>
 										<div class="t-n">
 											<span ng-if="match.teamA" class="t-nText">{{match.teamA.country}}</span>
 											<span ng-if="!match.teamA" class="t-nText">[{{match.teamHome}}]</span>
+											<span ng-if="match.teamA" class="t-nTri">{{match.teamA.shortcountry}}</span>
 										</div>
 									</div>
 									<div class="t away">
@@ -45,6 +48,7 @@
 										<div class="t-n">
 											<span ng-if="match.teamB" class="t-nText">{{match.teamB.country}}</span>
 											<span ng-if="!match.teamB" class="t-nText">[{{match.teamAway}}]</span>
+											<span ng-if="match.teamB" class="t-nTri">{{match.teamB.shortcountry}}</span>
 										</div>
 									</div>
 									<div class="s">

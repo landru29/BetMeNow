@@ -21,6 +21,12 @@ var TeamSchema = new Schema({
         trim: true,
         index: true
     },
+    shortcountry: {
+        type: String,
+        default: '',
+        trim: true,
+        index: true
+    },
 	group: {
 		type: String,
 		default: '',

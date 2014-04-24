@@ -1,0 +1,115 @@
+@media (max-width: 991px) {
+  .match-list h2 {
+    font-size: 14px;
+    line-height: 1;
+    font-weight: 700;
+    padding: 30px 10px 10px;
+  }
+  .match-list h3 {
+    color: #474747;
+    font-size: 16px;
+    line-height: 30px;
+    height: 30px;
+    border-bottom: solid 1px #474747;
+    background: #f5f5f5;
+  }
+  .mu .mu-m > .mu-reasonwin-abbr {
+    text-align: center;
+  }
+  .mu .mu-linkmore {
+    position: absolute;
+    right: -20px;
+    top: 0;
+    bottom: 0;
+  }
+  .col-xs-12 .mu {
+    padding: 0 10px;
+  }
+  .col-xs-12 .mu .mu-m-link {
+    height: 60px;
+    margin: 0 -10px;
+    padding: 0 10px;
+  }
+  .col-xs-12 .mu .mu-day {
+    display: none !important;
+    visibility: hidden !important;
+  }
+  .col-xs-12 .mu .mu-i {
+    height: 60px;
+    padding-right: 20px;
+    float: left;
+  }
+  .col-xs-12 .mu .mu-i .mu-i-datetime,
+  .col-xs-12 .mu .mu-i .mu-i-group,
+  .col-xs-12 .mu .mu-i .mu-i-location,
+  .col-xs-12 .mu .mu-i .mu-i-matchnum,
+  .col-xs-12 .mu .mu-i .mu-i-round {
+    display: none !important;
+    visibility: hidden !important;
+  }
+  .col-xs-12 .mu .mu-i .mu-i-date {
+    font-size: 11px;
+    line-height: 14px;
+    text-transform: uppercase;
+    margin-top: 20px;
+    width: 40px;
+  }
+  .col-xs-12 .mu .mu-m {
+    margin-left: 60px;
+    height: 60px;
+  }
+  .col-xs-12 .mu .mu-m .t {
+    width: 35%;
+  }
+  .col-xs-12 .mu .mu-m .s {
+    width: 30%;
+  }
+  .col-xs-12 .mu .mu-m .mu-reasonwin {
+    display: none !important;
+    visibility: hidden !important;
+  }
+  .col-xs-12 .mu .mu-m .mu-reasonwin-abbr {
+    font-size: 11px;
+    line-height: 11px;
+    margin-bottom: 4px;
+  }
+  .col-xs-12 .mu .mu-linkmore {
+    display: none !important;
+    visibility: hidden !important;
+  }
+  .col-xs-12 .mu .t {
+    width: 35%;
+  }
+  .col-xs-12 .mu .t .t-nText {
+    display: none !important;
+    visibility: hidden !important;
+  }
+  .col-xs-12 .mu .t .t-nTri,
+  .col-xs-12 .mu .t .t-i-wrap {
+    height: 60px;
+  }
+  .t .t-n .t-nText,
+  .t .t-i .t-nText {
+    color: #474747;
+    text-transform: uppercase;
+  }
+  .t .t-i img[class*="-logoPh"],
+  .t .t-i img[class*="-logo"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .t .t-i img[class$="-logo"] {
+    z-index: 2;
+    background-color: #ffffff;
+  }
+  .t .t-i.i-4 {
+    width: 33px;
+    height: 33px;
+  }
+  .t .t-i.i-4 img[class*="-logoPh"],
+  .t .t-i.i-4 img[class*="-logo"] {
+    width: 33px;
+    height: 33px;
+  }
+}

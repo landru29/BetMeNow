@@ -219,8 +219,8 @@ exports.all = function(req, res) {
 			});
 		} else {
       var opts = [
-        { path: 'teamHome.team', select: 'country flag points group', model: 'Team'},
-        { path: 'teamAway.team', select: 'country flag points group', model: 'Team'}
+        { path: 'teamHome.team', select: 'shortcountry country flag points group', model: 'Team'},
+        { path: 'teamAway.team', select: 'shortcountry country flag points group', model: 'Team'}
       ];
       Match.populate(levels, opts, function(err, data) {
         if (err) {
