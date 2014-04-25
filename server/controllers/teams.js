@@ -114,7 +114,6 @@ exports.show = function(req, res) {
           if (err) {
             console.log(err);
           }
-          console.log(matchesP);
           team.matches = matchesP;
           res.jsonp(team);
         });
