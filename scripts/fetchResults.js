@@ -5,6 +5,7 @@ var path       = require('path'),
     fs         = require('fs'),
     http       = require('http'),
     emitter    = require('events').EventEmitter,
+    eventEmit  = new emitter(),
     htmlparser = require('htmlparser2'),
     _          = require('lodash'),
     rootPath   = path.normalize(__dirname + '/..'),
@@ -26,7 +27,7 @@ var path       = require('path'),
       dryrun: false               // Simulation
     };
 
-require(process.cwd() + '/scripts/updateBets')(emitter);
+require(process.cwd() + '/scripts/updateBets')(eventEmit);
 
 /**
  * Format the date
@@ -773,7 +774,7 @@ var saveMatchScore = function(err, score, match) {
         if (nbUpdated === 1) {
           nbMatchesUpdated++;
           // Emit an event for update bets
-          emitter.emit('save', newMatch);
+          eventEmit.emit('save', newMatch);
           // Mettre à jour le vainqueur à sa nouvelle place
           logger(nbUpdated + ' match saved');
           updateTeams(newMatch, function(err, theMatch, firstTeam, secondTeam) {

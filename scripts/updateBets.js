@@ -1,7 +1,8 @@
 // updateBets.js
 'use strict';
 
-var User = require(rootPath + '/server/models/user.js'),
+var rootPath = process.cwd(),
+    User = require(rootPath + '/server/models/user.js'),
     Bet  = require(rootPath + '/server/models/bet.js');
 
 /**
