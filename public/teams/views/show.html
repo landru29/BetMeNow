@@ -1,81 +1,76 @@
 <section>
-	<h2>{{team.country}} <img data-ng-src="{{team.flag}}" alt="flag" title="flag of {{team.country}}"/></h2>
-    <div data-ng-if="['manager', 'admin'].indexOf(global.user.role) !== -1">
-        <a class="btn" href="/#!/teams/{{team._id}}/edit">
-        	<i class="glyphicon glyphicon-edit"></i>
-        </a>
-        <a class="btn" data-ng-click="remove();">
-            <i class="glyphicon glyphicon-trash"></i>
-        </a>
-    </div>
+	<h2>{{team.country}} <img data-ng-src="{{team.flag}}" alt="flag" title="{{team.country}}"/></h2>
     <div>Group: {{team.group}}</div>
     <div>Pts: {{team.points}}</div>
 
-    <div class="col-xs-12 clear-grid" ng-repeat="match in team.matches" style="margin-top:40px;border-top:1px solid;">
-
-        <div class="mh pointer" data-ng-class="{fixture:!match.score.home, result:match.score.home}" data-ng-click="showMatch(match)">
-            <div class="mh-i">
-                <div class="mh-i-location-date">
-                    <span class="mh-i-stadium">{{match.stadium}}</span>
-                    <span class="mh-i-venue">{{match.city}}</span>
-                    <div class="mh-i-datetime">{{match.date|date:'dd MMM yyyy - HH:mm'}}</div>
-                </div>
-            </div>
-            <div class="mh-m">
-                <div class="t home">
-                    <div class="t-i i-4">
-                        <span class="t-i-wrap">
-                            <img ng-src="{{match.teamHome.team.flag}}" alt="{{match.teamHome.team.country}}" class="i-4-flag flag"/>
-                        </span>
-                    </div>
-                    <div class="t-n">
-                        <span class="t-nText ">{{match.teamHome.team.country}}</span>
-                        <span class="t-nTri"></span>
+    <div class="match-list">
+        <div class="col-xs-12 clear-grid" ng-repeat="match in team.matches" style="margin-top:40px;border-top:1px solid;">
+            <div class="mh pointer" data-ng-class="{fixture:!match.score.home, result:match.score.home}" data-ng-click="showMatch(match)">
+                <div class="mh-i">
+                    <div class="mh-i-location-date">
+                        <span class="mh-i-stadium">{{match.stadium}}</span>
+                        <span> - </span>
+                        <span class="mh-i-venue">{{match.city}}</span>
+                        <span> - </span>
+                        <div class="mh-i-datetime">{{match.date|date:'dd MMM yyyy - HH:mm'}}</div>
                     </div>
                 </div>
-                <div class="t away">
-                    <div class="t-i i-4">
-                        <span class="t-i-wrap">
-                            <img ng-src="{{match.teamAway.team.flag}}" alt="{{match.teamAway.team.country}}" class="i-4-flag flag"/>
-                        </span>
-                    </div>
-                    <div class="t-n">
-                        <span class="t-nText ">{{match.teamAway.team.country}}</span>
-                        <span class="t-nTri"></span>
-                    </div>
-                </div>
-                <div class="s">
-                    <div class="s-status"><span data-ng-if="match.score.away">Fin</span></div>
-                    <div class="s-score s-date-HHmm">
-                        <span data-ng-if="!match.score.away" class="s-scoreText">{{match.date|date:'HH:mm'}}</span>
-                        <span data-ng-if="match.score.away" class="s-scoreText">{{match.score}}</span>
-                    </div>
-                </div>
-                <div class="t-scorer home" data-ng-if="match.score.home">
-                    <ul class="mh-l-scorers">
-                        <li class="mh-scorer">
-                            <span class="ml-scorer-name">
-                                <div class="p">
-                                    <div class="p-i">
-                                        <span class="p-i-bibnum"></span>
-                                        <img alt="" src="http://img.fifa.com/images/flags/4/.png" class="flag">
-                                    </div>
-                                    <div class="p-n">
-                                        <a href="/worldfootball/statisticsandrecords/players/player=274135/index.html">
-                                            <span class="p-n-webname">Mamadou SAKHO</span>
-                                        </a>
-                                    </div>
-                                </div>
+                <div class="mh-m">
+                    <div class="t home">
+                        <div class="t-i i-4">
+                            <span class="t-i-wrap">
+                                <img ng-src="{{match.teamHome.team.flag}}" alt="{{match.teamHome.team.country}}" class="i-4-flag flag"/>
                             </span>
-                            <span class="ml-scorer-evmin">22', 72'</span>
-                        </li>
-                    </ul>
+                        </div>
+                        <div class="t-n">
+                            <span class="t-nText ">{{match.teamHome.team.country}}</span>
+                            <span class="t-nTri">{{match.teamHome.team.shortcountry}}</span>
+                        </div>
+                    </div>
+                    <div class="t away">
+                        <div class="t-i i-4">
+                            <span class="t-i-wrap">
+                                <img ng-src="{{match.teamAway.team.flag}}" alt="{{match.teamAway.team.country}}" class="i-4-flag flag"/>
+                            </span>
+                        </div>
+                        <div class="t-n">
+                            <span class="t-nText">{{match.teamAway.team.country}}</span>
+                            <span class="t-nTri">{{match.teamAway.team.shortcountry}}</span>
+                        </div>
+                    </div>
+                    <div class="s">
+                        <div class="s-status"><span data-ng-if="match.score.away">Fin</span></div>
+                        <div class="s-score s-date-HHmm">
+                            <span data-ng-if="!match.score.away" class="s-scoreText">{{match.date|date:'HH:mm'}}</span>
+                            <span data-ng-if="match.score.away" class="s-scoreText">{{match.score}}</span>
+                        </div>
+                    </div>
+<!--                     <div class="t-scorer home" data-ng-if="match.score.home">
+                        <ul class="mh-l-scorers">
+                            <li class="mh-scorer">
+                                <span class="ml-scorer-name">
+                                    <div class="p">
+                                        <div class="p-i">
+                                            <span class="p-i-bibnum"></span>
+                                            <img alt="" src="http://img.fifa.com/images/flags/4/.png" class="flag">
+                                        </div>
+                                        <div class="p-n">
+                                            <a href="/worldfootball/statisticsandrecords/players/player=274135/index.html">
+                                                <span class="p-n-webname">Mamadou SAKHO</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </span>
+                                <span class="ml-scorer-evmin">22', 72'</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="t-scorer away" data-ng-if="match.score.away">
+                        <ul class="mh-l-scorers"></ul>
+                    </div> -->
+                    <div class="mu-reasonwin"></div>
+                    <div class="mu-reasonwin-abbr"></div>
                 </div>
-                <div class="t-scorer away" data-ng-if="match.score.away">
-                    <ul class="mh-l-scorers"></ul>
-                </div>
-                <div class="mu-reasonwin"></div>
-                <div class="mu-reasonwin-abbr"></div>
             </div>
         </div>
     </div>

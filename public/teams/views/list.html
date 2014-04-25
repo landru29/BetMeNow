@@ -1,9 +1,9 @@
 <section>
 	<div data-ng-repeat="group in teams">
 		<div class="row">
-			<div class="col-md-11"><span class="caption">Group {{group._id}}</span></div>
+			<div class="col-md-12"><span class="caption">Group {{group._id}}</span></div>
 		</div>
-		<div class="row head col-xs-12">
+		<div class="row head col-md-12 col-xs-12">
 			<div class="col-md-4 col-xs-10 title">Teams</div>
 			<div class="col-md-1 hidden-xs"><abbr title="Played">MP</abbr></div>
 			<div class="col-md-1 hidden-xs"><abbr title="Won">W</abbr></div>
@@ -13,7 +13,7 @@
 			<div class="col-md-1 hidden-xs"><abbr title="Goals against">GA</abbr></div>
 			<div class="col-md-1 col-xs-2"><abbr title="Points">Pts</abbr></div>
 		</div>
-		<div data-ng-repeat="team in group.teams" class="row team">
+		<div data-ng-repeat="team in group.teams" class="row team col-md-12 col-xs-12">
 			<div class="col-md-4 col-xs-10 countryText pointer" data-ng-click="showTeam(team)">
 				<img data-ng-src="{{team.flag}}" alt="flag" class="flag"/>{{team.country}}
 			</div>
