@@ -1,15 +1,11 @@
 .DS_Store
 .nodemonignore
-.sass-cache/
 .bower-*/
-.idea/
 node_modules/
 public/vendor/
-mean.iml
 test/coverage/
 modules/public/
 modules/views/
 /public/build/
 .vagrant/
-/scripts/fifa_files/*
 /scripts/fifa.html
