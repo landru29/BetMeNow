@@ -18,8 +18,10 @@ angular.module('wcb.system')
         for (var i = 0; i < data.length; i++) {
           ids.push({match: data[i]._id});
         }
-        var query = JSON.stringify({$or: ids});
-        Bets.query(query, function(match_bets) {
+        console.log(ids);
+        var query = JSON.stringify({'$or': ids});
+        console.log(query);
+        Bets.query({query: query}, function(match_bets) {
           for (var i = 0; i < match_bets.length; i++) {
             if (angular.isUndefined($scope.betsOfLastMatches[match_bets[i].match._id])) {
               $scope.betsOfLastMatches[match_bets[i].match._id] = 0;
