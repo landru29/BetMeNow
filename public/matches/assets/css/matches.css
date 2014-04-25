@@ -121,22 +121,22 @@
 .mu > a:hover *, .mu > a:hover .s-status, .mu > a:hover .s-status-abbr, .mu > a:hover .s-score, .mu > a:hover .mu-reasonwin {
   text-decoration: none;
 }
-.col-xs-12 {
+.match-list .col-xs-12 {
   position: relative;
   min-height: 1px;
   float: inherit;
 }
-.col-xs-12 .mu .mu-i div {
+.match-list .col-xs-12 .mu .mu-i div {
   line-height: 17px;
 }
-.col-xs-12 .mu .mu-m .mu-reasonwin {
+.match-list .col-xs-12 .mu .mu-m .mu-reasonwin {
   font-size: 11px;
   line-height: 18px;
 }
-.col-xs-12 .t {
+.match-list .col-xs-12 .t {
   height: 80px;
 }
-.col-xs-12 .t-n .t-nText {
+.match-list .col-xs-12 .t-n .t-nText {
   font-size: 27px;
   line-height: 27px;
   height: 80px;
@@ -148,10 +148,10 @@
 .flag {
   width: 48px;
 }
-.col-xs-12 .s {
+.match-list .col-xs-12 .s {
   margin-bottom: 8px;
 }
-.col-xs-12 .s .s-status {
+.match-list .col-xs-12 .s .s-status {
   font-size: 11px;
   text-transform: uppercase;
 }
@@ -180,22 +180,6 @@
   border: 2px dotted darkgreen;
 }
 @media (min-width: 991px) {
-  .col-xs-12 .t-n .t-nTri,
-  .col-xs-12 .mu .mu-day,
-  .col-xs-12 .mu .mu-i .mu-i-date,
-  .col-xs-12 .mu .mu-i .mu-i-matchnum,
-  .col-xs-12 .mu .mu-i .mu-i-round,
-  .col-xs-12 .mu .mu-m .mu-reasonwin-abbr
-  {
-    display: none !important;
-    visibility: hidden !important;
-  }
-  .s {
-    height: 70px;
-  }
-  .col-xs-12 .t-i .t-i-wrap {
-    height: 80px;
-  }
   .match-list h2 {
     height: 65px;
     font-size: 24px;
@@ -211,34 +195,50 @@
     height: 50px;
     display: table-cell;
   }
-  .col-xs-12 {
+  .match-list .col-xs-12 .t-n .t-nTri,
+  .match-list .col-xs-12 .mu .mu-day,
+  .match-list .col-xs-12 .mu .mu-i .mu-i-date,
+  .match-list .col-xs-12 .mu .mu-i .mu-i-matchnum,
+  .match-list .col-xs-12 .mu .mu-i .mu-i-round,
+  .match-list .col-xs-12 .mu .mu-m .mu-reasonwin-abbr
+  {
+    display: none !important;
+    visibility: hidden !important;
+  }
+  .s {
+    height: 70px;
+  }
+  .match-list .col-xs-12 .t-i .t-i-wrap {
+    height: 80px;
+  }
+  .match-list .col-xs-12 {
     padding-left: 10px;
     padding-right: 10px;
   }
-  .col-xs-12 .mu .mu-i {
+  .match-list .col-xs-12 .mu .mu-i {
     width: 232px;
     margin-right: 20px;
     min-height: 80px;
   }
-  .col-xs-12 .mu .mu-i .mu-i-datetime {
+  .match-list .col-xs-12 .mu .mu-i .mu-i-datetime {
     margin-top: 5px;
   }
-  .col-xs-12 .mu .mu-m {
+  .match-list .col-xs-12 .mu .mu-m {
     margin-left: 272px;
   }
-  .col-xs-12 .t .t-i + .t-n,
-  .col-xs-12 .t.home .t-i + .t-n {
+  .match-list .col-xs-12 .t .t-i + .t-n,
+  .match-list .col-xs-12 .t.home .t-i + .t-n {
     margin-left: 63px;
   }
-  .col-xs-12 .t.away .t-i + .t-n {
+  .match-list .col-xs-12 .t.away .t-i + .t-n {
     margin-right: 63px;
     margin-left: 0;
   }
-  .col-xs-12 .s .s-score.s-date-HHmm {
+  .match-list .col-xs-12 .s .s-score.s-date-HHmm {
     font-size: 27px;
     line-height: 26px;
   }
-  .col-xs-12 .s .s-status {
+  .match-list .col-xs-12 .s .s-status {
     line-height: 26px;
     min-height: 26px;
   }
